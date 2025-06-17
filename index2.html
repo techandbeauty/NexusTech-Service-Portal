@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Tech Digital Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background-color: #0d1117;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 16px 0;
+            border-bottom: 1px solid #21262d;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #00d4ff;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 48px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #c9d1d9;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00d4ff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-auth {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .auth-link {
+            color: #c9d1d9;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .auth-link:hover {
+            color: #00d4ff;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 102, 255, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0066ff 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, #00d4ff 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, #0066ff 0%, transparent 50%);
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 0 24px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero-badge {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 32px;
+            display: inline-block;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: clamp(52px, 8vw, 84px);
+            font-weight: 900;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            animation: fadeInUp 1s ease 0.2s both;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(20px, 3vw, 28px);
+            margin-bottom: 16px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.4s both;
+            font-weight: 700;
+            color: #00d4ff;
+        }
+
+        .hero p {
+            font-size: clamp(18px, 2.5vw, 22px);
+            margin-bottom: 48px;
+            opacity: 0.8;
+            animation: fadeInUp 1s ease 0.6s both;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0, 102, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #00d4ff;
+            padding: 20px 40px;
+            border: 2px solid #00d4ff;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #00d4ff;
+            color: #0d1117;
+            transform: translateY(-3px);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 120px 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #0d1117;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-badge {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+
+        .section-header h2 {
+            font-size: clamp(48px, 6vw, 64px);
+            font-weight: 900;
+            margin-bottom: 24px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .section-header p {
+            font-size: 20px;
+            color: #8b949e;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 32px;
+            margin-top: 80px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #161b22 0%, #21262d 100%);
+            padding: 48px 40px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #30363d;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0066ff, #00d4ff);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.2);
+            border-color: #00d4ff;
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 32px;
+            color: white;
+            font-size: 32px;
+            box-shadow: 0 8px 20px rgba(0, 102, 255, 0.3);
+        }
+
+        .service-card h3 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .service-card p {
+            color: #8b949e;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* Process Section */
+        .process {
+            background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+            padding: 120px 24px;
+        }
+
+        .process-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 48px;
+            margin-top: 80px;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+            padding: 40px 24px;
+            background: rgba(0, 212, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 212, 255, 0.1);
+            border-color: #00d4ff;
+        }
+
+        .step-number {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 900;
+            margin: 0 auto 32px;
+            box-shadow: 0 10px 25px rgba(0, 102, 255, 0.3);
+        }
+
+        .process-step h3 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .process-step p {
+            color: #8b949e;
+            line-height: 1.7;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 120px 24px;
+            background: #0d1117;
+        }
+
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 48px;
+            margin-top: 60px;
+        }
+
+        .stat-item {
+            padding: 40px 20px;
+        }
+
+        .stat-number {
+            font-size: 56px;
+            font-weight: 900;
+            color: #00d4ff;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            color: #8b949e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
+            color: white;
+            padding: 120px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(48px, 6vw, 64px);
+            font-weight: 900;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .cta-section p {
+            font-size: 22px;
+            margin-bottom: 48px;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 20px 48px;
+            border: 2px solid white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            background: white;
+            color: #0066ff;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0d1117;
+            color: white;
+            padding: 80px 24px 40px;
+            border-top: 1px solid #21262d;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 48px;
+        }
+
+        .footer-section h4 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            color: #00d4ff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #8b949e;
+            text-decoration: none;
+            line-height: 2;
+            transition: color 0.3s ease;
+            font-size: 16px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .footer-section a:hover {
+            color: #00d4ff;
+        }
+
+        .footer-bottom {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid #21262d;
+            text-align: center;
+            color: #8b949e;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-container {
+                padding: 0 16px;
+            }
+
+            .services {
+                padding: 80px 16px;
+            }
+
+            .process {
+                padding: 80px 16px;
+            }
+
+            .stats {
+                padding: 80px 16px;
+            }
+
+            .cta-section {
+                padding: 80px 16px;
+            }
+
+            .footer {
+                padding: 60px 16px 40px;
+            }
+
+            .nav-auth {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Nexus Tech</a>
+            <ul class="nav-links">
+                <li><a href="#" onclick="navigateTo('apps')">Apps</a></li>
+                <li><a href="#" onclick="navigateTo('websites')">Websites</a></li>
+                <li><a href="#" onclick="navigateTo('services')">Services</a></li>
+                <li><a href="#" onclick="navigateTo('portfolio')">Portfolio</a></li>
+                <li><a href="#" onclick="navigateTo('connect')">Connect</a></li>
+            </ul>
+            <div class="nav-auth">
+                <a href="dashboard.html" class="auth-link" id="dashboardLink" style="display: none;">Dashboard</a>
+                <a href="dashboard.html" class="cta-button" id="loginButton">Client Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Custom Digital Solutions</div>
+            <h1>Precision in Every Pixel</h1>
+            <div class="hero-subtitle">Next-Level Digital Experiences</div>
+            <p>Custom-built apps, websites, games, and digital solutions for forward-thinking brands ready to dominate their markets.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn-primary">Book Discovery Call</a>
+                <a href="#services" class="btn-secondary">Explore Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-header">
+            <div class="section-badge">Our Services</div>
+            <h2>Elite Development</h2>
+            <p>Cutting-edge solutions designed to accelerate your business and captivate your audience</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-icon">💻</div>
+                <h3>Web Development</h3>
+                <p>Custom websites and web applications built with modern frameworks. Responsive, fast, and optimized for conversion with seamless user experiences.</p>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-icon">📱</div>
+                <h3>App Development</h3>
+                <p>Native iOS and Android applications that users love. From concept to App Store, we create mobile experiences that drive engagement and revenue.</p>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-icon">🎮</div>
+                <h3>Game Development</h3>
+                <p>Interactive entertainment and gamified experiences. Mobile games, web games, and immersive experiences that captivate and engage your audience.</p>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-icon">⚡</div>
+                <h3>Digital Templates</h3>
+                <p>Pre-built solutions and template systems to accelerate development. Customizable frameworks, UI kits, and rapid deployment solutions for faster time-to-market.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process" id="process">
+        <div class="process-container">
+            <div class="section-header">
+                <div class="section-badge">Our Process</div>
+                <h2>Development Journey</h2>
+                <p>A proven methodology that delivers exceptional results every time</p>
+            </div>
+
+            <div class="process-steps">
+                <div class="process-step fade-in">
+                    <div class="step-number">1</div>
+                    <h3>Discovery</h3>
+                    <p>Deep dive into your business goals, target audience, and technical requirements. We create a comprehensive roadmap and project strategy.</p>
+                </div>
+
+                <div class="process-step fade-in">
+                    <div class="step-number">2</div>
+                    <h3>Design</h3>
+                    <p>User-centered design and intuitive interfaces. We create beautiful, functional designs that align with your brand and user expectations.</p>
+                </div>
+
+                <div class="process-step fade-in">
+                    <div class="step-number">3</div>
+                    <h3>Development</h3>
+                    <p>Agile development with clean code and best practices. Regular updates and client feedback ensure we're building exactly what you need.</p>
+                </div>
+
+                <div class="process-step fade-in">
+                    <div class="step-number">4</div>
+                    <h3>Launch</h3>
+                    <p>Seamless deployment, testing, and go-live support. We ensure a smooth launch and provide ongoing support for immediate success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats" id="stats">
+        <div class="stats-container">
+            <div class="section-header">
+                <div class="section-badge">Our Impact</div>
+                <h2>Proven Results</h2>
+                <p>Trusted by startups and enterprises worldwide</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <span class="stat-number">25+</span>
+                    <span class="stat-label">Projects Delivered</span>
+                </div>
+
+                <div class="stat-item fade-in">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Happy Clients</span>
+                </div>
+
+                <div class="stat-item fade-in">
+                    <span class="stat-number">8+</span>
+                    <span class="stat-label">Apps Launched</span>
+                </div>
+
+                <div class="stat-item fade-in">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Client Satisfaction</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="cta-content">
+            <h2>Ready to Build Something Amazing?</h2>
+            <p>Let's discuss your project and create a solution that exceeds your expectations</p>
+            <a href="connect.html" class="cta-btn">Book Discovery Call</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Company Info</h4>
+                <p><a href="about.html">About Nexus Tech</a></p>
+                <p><a href="team.html">Our Story</a></p>
+                <p><a href="mission.html">Mission & Values</a></p>
+                <p><a href="press.html">Press & Media</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Investor Relations</h4>
+                <p><a href="investors.html">Investor Portal</a></p>
+                <p><a href="financial.html">Financial Reports</a></p>
+                <p><a href="governance.html">Corporate Governance</a></p>
+                <p><a href="events.html">Investor Events</a></p>
+                <p><a href="news.html">News & Updates</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Support</h4>
+                <p><a href="support.html">Help Center</a></p>
+                <p><a href="contact.html">Contact Support</a></p>
+                <p><a href="documentation.html">Documentation</a></p>
+                <p><a href="status.html">System Status</a></p>
+                <p><a href="community.html">Community Forums</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Careers</h4>
+                <p><a href="careers.html">Open Positions</a></p>
+                <p><a href="culture.html">Company Culture</a></p>
+                <p><a href="benefits.html">Benefits & Perks</a></p>
+                <p><a href="internships.html">Internships</a></p>
+                <p><a href="apply.html">Apply Now</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Free Resources</h4>
+                <p><a href="blog.html">Tech Blog</a></p>
+                <p><a href="guides.html">Development Guides</a></p>
+                <p><a href="templates.html">Code Templates</a></p>
+                <p><a href="tools.html">Free Tools</a></p>
+                <p><a href="newsletter.html">Newsletter</a></p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Nexus Tech Digital Solutions. All rights reserved. | Privacy Policy | Terms of Service | Cookie Policy</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation function to open separate pages
+        function navigateTo(page) {
+            const pageUrls = {
+                'apps': 'apps.html',
+                'websites': 'websites.html', 
+                'services': 'services.html',
+                'portfolio': 'portfolio.html',
+                'connect': 'connect.html'
+            };
+            
+            const url = pageUrls[page];
+            if (url) {
+                window.location.href = url;
+            }
+        }
+
+        // Smooth scrolling and navbar effects
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(13, 17, 23, 0.98)';
+                navbar.style.borderBottom = '1px solid #00d4ff';
+            } else {
+                navbar.style.background = 'rgba(13, 17, 23, 0.95)';
+                navbar.style.borderBottom = '1px solid #21262d';
+            }
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Enhanced service card interactions
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px) scale(1.02)';
+                card.style.borderColor = '#00d4ff';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+                card.style.borderColor = '#30363d';
+            });
+        });
+
+        // Process step interactions
+        document.querySelectorAll('.process-step').forEach(step => {
+            step.addEventListener('mouseenter', () => {
+                step.style.background = 'rgba(0, 212, 255, 0.15)';
+                step.style.borderColor = '#00d4ff';
+            });
+            
+            step.addEventListener('mouseleave', () => {
+                step.style.background = 'rgba(0, 212, 255, 0.05)';
+                step.style.borderColor = 'rgba(0, 212, 255, 0.2)';
+            });
+        });
+
+        // Animate stats numbers
+        const animateStats = () => {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const finalNumber = stat.textContent;
+                const isPercentage = finalNumber.includes('%');
+                const hasPlus = finalNumber.includes('+');
+                const cleanNumber = finalNumber.replace(/[^\d.]/g, '');
+                const target = parseFloat(cleanNumber);
+                
+                let current = 0;
+                const increment = target / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    
+                    let displayValue = Math.floor(current);
+                    if (isPercentage) displayValue += '%';
+                    if (hasPlus) displayValue += '+';
+                    
+                    stat.textContent = displayValue;
+                }, 50);
+            });
+        };
+
+        // Trigger stats animation when section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Simple auth state management for homepage
+        document.addEventListener('DOMContentLoaded', () => {
+            // Try to detect if user is signed in (simplified)
+            setTimeout(() => {
+                if (window.authFunctions && window.authFunctions.getCurrentUser && window.authFunctions.getCurrentUser()) {
+                    const user = window.authFunctions.getCurrentUser();
+                    document.getElementById('dashboardLink').style.display = 'block';
+                    document.getElementById('loginButton').textContent = 'Dashboard';
+                    document.getElementById('loginButton').href = 'dashboard.html';
+                }
+            }, 1000);
+        });
+    </script>
+
+    <!-- Firebase SDK (optional for homepage auth state) -->
+    <script type="module" src="js/firebase-config.js"></script>
+</body>
+</html>
