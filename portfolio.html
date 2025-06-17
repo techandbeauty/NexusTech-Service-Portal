@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Nexus Tech Digital Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background-color: #0d1117;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 16px 0;
+            border-bottom: 1px solid #21262d;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #00d4ff;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 48px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #c9d1d9;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        .nav-links a.active {
+            color: #00d4ff;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00d4ff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 102, 255, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 24px 80px;
+            text-align: center;
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0066ff 100%);
+            color: white;
+        }
+
+        .hero-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 32px;
+            display: inline-block;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 72px);
+            font-weight: 900;
+            margin-bottom: 32px;
+            color: #ffffff;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 3vw, 24px);
+            color: #8b949e;
+            margin-bottom: 48px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+        }
+
+        /* Portfolio Grid */
+        .portfolio-section {
+            padding: 80px 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-badge {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+
+        .section-header h2 {
+            font-size: clamp(36px, 5vw, 48px);
+            font-weight: 900;
+            margin-bottom: 24px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: #8b949e;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 32px;
+            margin-bottom: 80px;
+        }
+
+        .portfolio-card {
+            background: linear-gradient(135deg, #161b22 0%, #21262d 100%);
+            border-radius: 12px;
+            border: 1px solid #30363d;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0066ff, #00d4ff);
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.2);
+            border-color: #00d4ff;
+        }
+
+        .portfolio-image {
+            height: 250px;
+            background: linear-gradient(135deg, #21262d 0%, #30363d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #00d4ff;
+            position: relative;
+        }
+
+        .portfolio-status {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-live {
+            background: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+        }
+
+        .status-development {
+            background: rgba(255, 193, 7, 0.1);
+            color: #ffc107;
+        }
+
+        .portfolio-content {
+            padding: 32px;
+        }
+
+        .portfolio-category {
+            color: #00d4ff;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .portfolio-card h3 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: #ffffff;
+        }
+
+        .portfolio-card p {
+            color: #8b949e;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .portfolio-tech {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .tech-tag {
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .portfolio-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .portfolio-button {
+            background: transparent;
+            color: #00d4ff;
+            padding: 12px 24px;
+            border: 2px solid #00d4ff;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+        }
+
+        .portfolio-button:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .portfolio-button.github {
+            background: #333;
+            color: white;
+            border-color: #333;
+        }
+
+        .portfolio-button.github:hover {
+            background: #444;
+            border-color: #444;
+        }
+
+        /* GitHub Integration */
+        .github-info {
+            background: rgba(0, 212, 255, 0.05);
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 16px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .github-info p {
+            font-size: 12px;
+            color: #8b949e;
+            margin: 0;
+        }
+
+        .github-info a {
+            color: #00d4ff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+            padding: 80px 24px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 32px 16px;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 900;
+            color: #00d4ff;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: #8b949e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0d1117;
+            color: white;
+            padding: 80px 24px 40px;
+            border-top: 1px solid #21262d;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 48px;
+        }
+
+        .footer-section h4 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            color: #00d4ff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #8b949e;
+            text-decoration: none;
+            line-height: 2;
+            transition: color 0.3s ease;
+            font-size: 16px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .footer-section a:hover {
+            color: #00d4ff;
+        }
+
+        .footer-bottom {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid #21262d;
+            text-align: center;
+            color: #8b949e;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 120px 16px 60px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .portfolio-buttons {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Nexus Tech</a>
+            <ul class="nav-links">
+                <li><a href="apps.html">Apps</a></li>
+                <li><a href="websites.html">Websites</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                <li><a href="connect.html">Connect</a></li>
+            </ul>
+            <a href="dashboard.html" class="cta-button">Client Login</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-badge">Our Work</div>
+            <h1>Project Portfolio</h1>
+            <p class="hero-subtitle">Explore our collection of innovative projects, from mobile apps to AI solutions, showcasing our expertise across multiple technologies and platforms.</p>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio-section">
+        <div class="section-header">
+            <div class="section-badge">Featured Projects</div>
+            <h2>Recent Work</h2>
+            <p>A showcase of our latest projects and development expertise</p>
+        </div>
+
+        <div class="portfolio-grid">
+            <!-- FitBodyFlex -->
+            <div class="portfolio-card">
+                <div class="portfolio-image">
+                    💪
+                    <div class="portfolio-status status-live">Live</div>
+                </div>
+                <div class="portfolio-content">
+                    <div class="portfolio-category">Mobile App</div>
+                    <h3>FitBodyFlex</h3>
+                    <p>Comprehensive fitness tracking app with personalized workout plans, progress monitoring, and social features. Built for iOS and Android platforms.</p>
+                    <div class="portfolio-tech">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">Firebase</span>
+                    </div>
+                    <div class="portfolio-buttons">
+                        <a href="coming-soon.html" class="portfolio-button">View Case Study</a>
+                        <a href="coming-soon.html" class="portfolio-button github">GitHub</a>
+                    </div>
+                    <div class="github-info">
+                        <p>📂 Repository: <a href="coming-soon.html">github.com/nexustech/fitbodyflex</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MyDigitalResume -->
+            <div class="portfolio-card">
+                <div class="portfolio-image">
+                    📄
+                    <div class="portfolio-status status-live">Live</div>
+                </div>
+                <div class="portfolio-content">
+                    <div class="portfolio-category">Website</div>
+                    <h3>MyDigitalResume</h3>
+                    <p>Interactive digital resume platform with dynamic content, responsive design, and modern animations. Showcasing professional experience in style.</p>
+                    <div class="portfolio-tech">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">GSAP</span>
+                    </div>
+                    <div class="portfolio-buttons">
+                        <a href="coming-soon.html" class="portfolio-button">View Case Study</a>
+                        <a href="coming-soon.html" class="portfolio-button github">GitHub</a>
+                    </div>
+                    <div class="github-info">
+                        <p>📂 Repository: <a href="coming-soon.html">github.com/nexustech/mydigitalresume</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech Deck App -->
+            <div class="portfolio-card">
+                <div class="portfolio-image">
+                    📚
+                    <div class="portfolio-status status-development">In Development</div>
+                </div>
+                <div class="portfolio-content">
+                    <div class="portfolio-category">Mobile App</div>
+                    <h3>Tech Deck App</h3>
+                    <p>Educational app for tech learning with interactive flashcards, progress tracking, and spaced repetition algorithms for optimal learning.</p>
+                    <div class="portfolio-tech">
+                        <span class="tech-tag">Flutter</span>
+                        <span class="tech-tag">Dart</span>
+                        <span class="tech-tag">SQLite</span>
+                        <span class="tech-tag">Provider</span>
+                    </div>
+                    <div class="portfolio-buttons">
+                        <a href="coming-soon.html" class="portfolio-button">View Case Study</a>
+                        <a href="coming-soon.html" class="portfolio-button github">GitHub</a>
+                    </div>
+                    <div class="github-info">
+                        <p>📂 Repository: <a href="coming-soon.html">github.com/nexustech/techdeckapp</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MARC AI App -->
+            <div class="portfolio-card">
+                <div class="portfolio-image">
+                    🤖
+                    <div class="portfolio-status">AI Powered</div>
+                </div>
+                <div class="portfolio-content">
+                    <div class="portfolio-category">AI Application</div>
+                    <h3>MARC AI App</h3>
+                    <p>Advanced AI-powered assistant application with natural language processing, machine learning capabilities, and intelligent automation features.</p>
+                    <div class="portfolio-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">OpenAI API</span>
+                        <span class="tech-tag">FastAPI</span>
+                    </div>
+                    <div class="portfolio-buttons">
+                        <a href="coming-soon.html" class="portfolio-button">View Case Study</a>
+                        <a href="coming-soon.html" class="portfolio-button github">GitHub</a>
+                    </div>
+                    <div class="github-info">
+                        <p>📂 Repository: <a href="coming-soon.html">github.com/nexustech/marc-ai</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEXORA -->
+            <div class="portfolio-card">
+                <div class="portfolio-image">
+                    🌟
+                    <div class="portfolio-status status-development">Beta</div>
+                </div>
+                <div class="portfolio-content">
+                    <div class="portfolio-category">Web Platform</div>
+                    <h3>NEXORA</h3>
+                    <p>Next-generation web platform with real-time collaboration, advanced analytics, and seamless integration capabilities for modern businesses.</p>
+                    <div class="portfolio-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                    </div>
+                    <div class="portfolio-buttons">
+                        <a href="coming-soon.html" class="portfolio-button">View Case Study</a>
+                        <a href="coming-soon.html" class="portfolio-button github">GitHub</a>
+                    </div>
+                    <div class="github-info">
+                        <p>📂 Repository: <a href="coming-soon.html">github.com/nexustech/nexora</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Budget Calculator -->
+            <div class="portfolio-card">
+                <div class="portfolio-image">
+                    💰
+                    <div class="portfolio-status status-live">Open Source</div>
+                </div>
+                <div class="portfolio-content">
+                    <div class="portfolio-category">Python Application</div>
+                    <h3>Budget Calculator</h3>
+                    <p>Powerful budget management tool with expense tracking, financial forecasting, and detailed reporting capabilities. Built with Python.</p>
+                    <div class="portfolio-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Tkinter</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">Matplotlib</span>
+                    </div>
+                    <div class="portfolio-buttons">
+                        <a href="coming-soon.html" class="portfolio-button">View Case Study</a>
+                        <a href="coming-soon.html" class="portfolio-button github">GitHub</a>
+                    </div>
+                    <div class="github-info">
+                        <p>📂 Repository: <a href="coming-soon.html">github.com/nexustech/budget-calculator</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="section-header">
+            <div class="section-badge">Our Impact</div>
+            <h2>Project Statistics</h2>
+            <p>Real metrics from our development work</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number">6</span>
+                <span class="stat-label">Active Projects</span>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-number">4</span>
+                <span class="stat-label">Technologies Used</span>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-number">3</span>
+                <span class="stat-label">Live Applications</span>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">GitHub Integration</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Company Info</h4>
+                <p><a href="about.html">About Nexus Tech</a></p>
+                <p><a href="team.html">Meet the Team</a></p>
+                <p><a href="mission.html">Mission & Values</a></p>
+                <p><a href="press.html">Press & Media</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Services</h4>
+                <p><a href="apps.html">App Development</a></p>
+                <p><a href="websites.html">Web Development</a></p>
+                <p><a href="services.html">Game Development</a></p>
+                <p><a href="services.html">Digital Templates</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Support</h4>
+                <p><a href="support.html">Help Center</a></p>
+                <p><a href="contact.html">Contact Support</a></p>
+                <p><a href="documentation.html">Documentation</a></p>
+                <p><a href="status.html">System Status</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <p>hello@nexustech.dev</p>
+                <p>+1 (555) NEXUS-TECH</p>
+                <p><a href="connect.html">Book Discovery Call</a></p>
+                <p><a href="careers.html">Join Our Team</a></p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Nexus Tech Digital Solutions. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(13, 17, 23, 0.98)';
+                navbar.style.borderBottom = '1px solid #00d4ff';
+            } else {
+                navbar.style.background = 'rgba(13, 17, 23, 0.95)';
+                navbar.style.borderBottom = '1px solid #21262d';
+            }
+        });
+
+        // Portfolio card hover effects
+        document.querySelectorAll('.portfolio-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px) scale(1.02)';
+                card.style.borderColor = '#00d4ff';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+                card.style.borderColor = '#30363d';
+            });
+        });
+
+        // Animate stats numbers
+        const animateStats = () => {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const finalNumber = stat.textContent;
+                const isPercentage = finalNumber.includes('%');
+                const hasPlus = finalNumber.includes('+');
+                const cleanNumber = finalNumber.replace(/[^\d.]/g, '');
+                const target = parseFloat(cleanNumber);
+                
+                let current = 0;
+                const increment = target / 30;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    
+                    let displayValue = Math.floor(current);
+                    if (isPercentage) displayValue += '%';
+                    if (hasPlus) displayValue += '+';
+                    
+                    stat.textContent = displayValue;
+                }, 50);
+            });
+        };
+
+        // Trigger stats animation when section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+    </script>
+</body>
+</html>

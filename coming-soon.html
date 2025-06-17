@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon - Nexus Tech Digital Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background-color: #0d1117;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 16px 0;
+            border-bottom: 1px solid #21262d;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #00d4ff;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 48px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #c9d1d9;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00d4ff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 102, 255, 0.4);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 24px 80px;
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0066ff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, #00d4ff 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, #0066ff 0%, transparent 50%);
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .content-container {
+            max-width: 800px;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .coming-soon-badge {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 32px;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        .main-content h1 {
+            font-size: clamp(48px, 8vw, 72px);
+            font-weight: 900;
+            margin-bottom: 32px;
+            color: #ffffff;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease;
+        }
+
+        .main-content .subtitle {
+            font-size: clamp(20px, 3vw, 28px);
+            margin-bottom: 24px;
+            color: #00d4ff;
+            font-weight: 700;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .main-content p {
+            font-size: clamp(18px, 2.5vw, 22px);
+            margin-bottom: 48px;
+            opacity: 0.8;
+            color: #8b949e;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease 0.4s both;
+            line-height: 1.6;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s both;
+            margin-bottom: 60px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 102, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #00d4ff;
+            padding: 16px 32px;
+            border: 2px solid #00d4ff;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Features Preview */
+        .features-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            margin-top: 60px;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+
+        .feature-card {
+            background: rgba(0, 212, 255, 0.05);
+            padding: 32px 24px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: #00d4ff;
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 24px;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+        }
+
+        .feature-card p {
+            color: #8b949e;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Timeline */
+        .timeline-section {
+            background: rgba(0, 212, 255, 0.02);
+            padding: 60px 24px;
+            border-radius: 12px;
+            margin-top: 60px;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            animation: fadeInUp 1s ease 1s both;
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .timeline-header h2 {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 16px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .timeline-header p {
+            color: #8b949e;
+            font-size: 16px;
+        }
+
+        .timeline-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            text-align: center;
+            padding: 24px 16px;
+        }
+
+        .timeline-step {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .timeline-item h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #00d4ff;
+            text-transform: uppercase;
+        }
+
+        .timeline-item p {
+            color: #8b949e;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Newsletter Signup */
+        .newsletter-section {
+            background: rgba(0, 212, 255, 0.05);
+            padding: 48px 32px;
+            border-radius: 12px;
+            margin-top: 60px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            text-align: center;
+            animation: fadeInUp 1s ease 1.2s both;
+        }
+
+        .newsletter-section h3 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        .newsletter-section p {
+            color: #8b949e;
+            margin-bottom: 32px;
+            font-size: 16px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 16px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 16px;
+            background: rgba(13, 17, 23, 0.8);
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: #00d4ff;
+        }
+
+        .newsletter-btn {
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 102, 255, 0.3);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.05);
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .main-content {
+                padding: 120px 16px 60px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .features-preview {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-items {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Nexus Tech</a>
+            <ul class="nav-links">
+                <li><a href="apps.html">Apps</a></li>
+                <li><a href="websites.html">Websites</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="connect.html">Connect</a></li>
+            </ul>
+            <a href="dashboard.html" class="cta-button">Client Login</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-container">
+            <div class="coming-soon-badge">Project Case Studies</div>
+            <h1>Coming Soon</h1>
+            <div class="subtitle">Detailed Case Studies & GitHub Integration</div>
+            <p>We're currently developing comprehensive case studies for all our projects, complete with technical deep dives, development insights, and direct GitHub repository access.</p>
+
+            <div class="action-buttons">
+                <a href="portfolio.html" class="btn-primary">Back to Portfolio</a>
+                <a href="connect.html" class="btn-secondary">Contact Us</a>
+            </div>
+
+            <!-- Features Preview -->
+            <div class="features-preview">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Project Analytics</h3>
+                    <p>Detailed performance metrics, user engagement data, and technical specifications for each project.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Code Repositories</h3>
+                    <p>Direct access to GitHub repositories with clean, documented code and implementation details.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📸</div>
+                    <h3>Visual Showcase</h3>
+                    <p>High-quality screenshots, demos, and interactive previews of our applications in action.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>Development Stories</h3>
+                    <p>Behind-the-scenes insights, challenges faced, and solutions implemented during development.</p>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="timeline-section">
+                <div class="timeline-header">
+                    <h2>Development Timeline</h2>
+                    <p>Our roadmap for launching detailed project case studies</p>
+                </div>
+
+                <div class="timeline-items">
+                    <div class="timeline-item">
+                        <div class="timeline-step">1</div>
+                        <h4>Q1 2025</h4>
+                        <p>GitHub Integration & Repository Setup</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-step">2</div>
+                        <h4>Q2 2025</h4>
+                        <p>Case Study Content & Documentation</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-step">3</div>
+                        <h4>Q3 2025</h4>
+                        <p>Interactive Demos & Live Previews</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-step">4</div>
+                        <h4>Q4 2025</h4>
+                        <p>Complete Portfolio Launch</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="newsletter-section">
+                <h3>Stay Updated</h3>
+                <p>Get notified when our detailed case studies and GitHub repositories go live</p>
+                <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+                    <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+                    <button type="submit" class="newsletter-btn">Notify Me</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(13, 17, 23, 0.98)';
+                navbar.style.borderBottom = '1px solid #00d4ff';
+            } else {
+                navbar.style.background = 'rgba(13, 17, 23, 0.95)';
+                navbar.style.borderBottom = '1px solid #21262d';
+            }
+        });
+
+        // Newsletter form handler
+        function handleNewsletter(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input').value;
+            alert(`Thank you! We'll notify ${email} when our case studies are ready.`);
+            event.target.reset();
+        }
+
+        // Feature card hover effects
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.background = 'rgba(0, 212, 255, 0.15)';
+                card.style.borderColor = '#00d4ff';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.background = 'rgba(0, 212, 255, 0.05)';
+                card.style.borderColor = 'rgba(0, 212, 255, 0.2)';
+            });
+        });
+
+        // Add referrer information if available
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const project = urlParams.get('project');
+            
+            if (project) {
+                const subtitle = document.querySelector('.subtitle');
+                subtitle.textContent = `${project} Case Study Coming Soon`;
+                
+                const description = document.querySelector('.main-content p');
+                description.textContent = `We're preparing a comprehensive case study for ${project}, including technical architecture, development process, and lessons learned. Check back soon!`;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard | Nexus Tech Digital Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background-color: #0d1117;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 16px 0;
+            border-bottom: 1px solid #21262d;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #00d4ff;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .user-name {
+            color: #c9d1d9;
+            font-weight: 500;
+        }
+
+        .sign-out-btn {
+            background: transparent;
+            color: #8b949e;
+            border: 1px solid #30363d;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sign-out-btn:hover {
+            color: #00d4ff;
+            border-color: #00d4ff;
+        }
+
+        /* Main Content */
+        .main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        .welcome-section {
+            background: linear-gradient(135deg, #161b22 0%, #21262d 100%);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid #30363d;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0066ff, #00d4ff);
+        }
+
+        .welcome-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .welcome-text {
+            color: #8b949e;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+            margin-bottom: 40px;
+        }
+
+        .dashboard-card {
+            background: linear-gradient(135deg, #161b22 0%, #21262d 100%);
+            border-radius: 12px;
+            padding: 32px;
+            border: 1px solid #30363d;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0066ff, #00d4ff);
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.2);
+            border-color: #00d4ff;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-content {
+            color: #8b949e;
+            line-height: 1.7;
+        }
+
+        .card-action {
+            margin-top: 24px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 102, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #00d4ff;
+            border: 1px solid #00d4ff;
+        }
+
+        .btn-secondary:hover {
+            background: #00d4ff;
+            color: #0d1117;
+        }
+
+        /* Projects Section */
+        .projects-section {
+            background: linear-gradient(135deg, #161b22 0%, #21262d 100%);
+            border-radius: 12px;
+            padding: 40px;
+            border: 1px solid #30363d;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .projects-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0066ff, #00d4ff);
+        }
+
+        .projects-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .projects-title {
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .project-item {
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .project-item:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: #00d4ff;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .project-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .project-status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-active {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .status-pending {
+            background: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .status-completed {
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .project-description {
+            color: #8b949e;
+            margin-bottom: 16px;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 24px;
+            font-size: 14px;
+            color: #8b949e;
+        }
+
+        /* Loading/Auth States */
+        .loading-state,
+        .auth-required {
+            display: none;
+            text-align: center;
+            padding: 80px 40px;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid #30363d;
+            border-top: 4px solid #00d4ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 24px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 16px;
+            }
+
+            .main {
+                padding: 24px 16px;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .welcome-section,
+            .projects-section {
+                padding: 24px;
+            }
+
+            .projects-header {
+                flex-direction: column;
+                gap: 16px;
+                align-items: flex-start;
+            }
+
+            .project-header {
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
+
+            .project-meta {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Nexus Tech</a>
+            <div class="user-info">
+                <div class="user-avatar" id="userAvatar">?</div>
+                <span class="user-name" id="userName">Loading...</span>
+                <button class="sign-out-btn" id="signOutBtn">Sign Out</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Loading State -->
+    <div class="loading-state" id="loadingState">
+        <div class="loading-spinner"></div>
+        <h2>Loading Dashboard...</h2>
+        <p>Please wait while we load your information.</p>
+    </div>
+
+    <!-- Auth Required State -->
+    <div class="auth-required" id="authRequired">
+        <h2>Authentication Required</h2>
+        <p>Please sign in to access your dashboard.</p>
+        <a href="login.html" class="btn">Sign In</a>
+    </div>
+
+    <!-- Main Dashboard Content -->
+    <main class="main" id="dashboardContent" style="display: none;">
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <h1 class="welcome-title">Welcome Back!</h1>
+            <p class="welcome-text">
+                Track your projects, view updates, and manage your digital solutions all from one place. 
+                Our team is working hard to bring your vision to life.
+            </p>
+        </section>
+
+        <!-- Dashboard Cards -->
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon">📊</div>
+                    <h3 class="card-title">Project Overview</h3>
+                </div>
+                <div class="card-content">
+                    <p>View detailed progress reports, milestones, and timeline updates for all your active projects.</p>
+                </div>
+                <div class="card-action">
+                    <a href="#projects" class="btn">View Projects</a>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon">💬</div>
+                    <h3 class="card-title">Messages</h3>
+                </div>
+                <div class="card-content">
+                    <p>Direct communication with your development team. Get real-time updates and ask questions.</p>
+                </div>
+                <div class="card-action">
+                    <a href="#messages" class="btn btn-secondary">Open Messages</a>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon">📋</div>
+                    <h3 class="card-title">Support Center</h3>
+                </div>
+                <div class="card-content">
+                    <p>Access documentation, submit support tickets, and find answers to common questions.</p>
+                </div>
+                <div class="card-action">
+                    <a href="#support" class="btn btn-secondary">Get Support</a>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon">⚙️</div>
+                    <h3 class="card-title">Account Settings</h3>
+                </div>
+                <div class="card-content">
+                    <p>Manage your profile, notification preferences, and billing information.</p>
+                </div>
+                <div class="card-action">
+                    <a href="#settings" class="btn btn-secondary">Settings</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects Section -->
+        <section class="projects-section">
+            <div class="projects-header">
+                <h2 class="projects-title">Your Projects</h2>
+                <a href="#new-project" class="btn">Start New Project</a>
+            </div>
+
+            <div id="projectsList">
+                <!-- Projects will be loaded here -->
+                <div class="project-item">
+                    <div class="project-header">
+                        <h3 class="project-name">E-commerce Platform</h3>
+                        <span class="project-status status-active">In Progress</span>
+                    </div>
+                    <p class="project-description">
+                        Custom e-commerce solution with payment integration, inventory management, and customer dashboard.
+                    </p>
+                    <div class="project-meta">
+                        <span>Started: March 2025</span>
+                        <span>Progress: 65%</span>
+                        <span>Next Milestone: User Testing</span>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-header">
+                        <h3 class="project-name">Mobile App Development</h3>
+                        <span class="project-status status-pending">Planning</span>
+                    </div>
+                    <p class="project-description">
+                        Cross-platform mobile application for iOS and Android with real-time features.
+                    </p>
+                    <div class="project-meta">
+                        <span>Scheduled: April 2025</span>
+                        <span>Progress: 15%</span>
+                        <span>Next Milestone: Design Review</span>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-header">
+                        <h3 class="project-name">Company Website Redesign</h3>
+                        <span class="project-status status-completed">Completed</span>
+                    </div>
+                    <p class="project-description">
+                        Complete website overhaul with modern design, SEO optimization, and performance improvements.
+                    </p>
+                    <div class="project-meta">
+                        <span>Completed: February 2025</span>
+                        <span>Progress: 100%</span>
+                        <span>Status: Live & Monitoring</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { authFunctions, dbFunctions } from './js/firebase-config.js';
+
+        // Show loading state initially
+        document.getElementById('loadingState').style.display = 'block';
+
+        // Listen for auth state changes
+        authFunctions.onAuthStateChanged(async (user) => {
+            const loadingState = document.getElementById('loadingState');
+            const authRequired = document.getElementById('authRequired');
+            const dashboardContent = document.getElementById('dashboardContent');
+
+            if (user) {
+                // User is signed in
+                console.log('User signed in:', user);
+                
+                try {
+                    // Load user profile
+                    const userProfile = await dbFunctions.getUserProfile(user.uid);
+                    
+                    // Update UI with user info
+                    updateUserInfo(user, userProfile);
+                    
+                    // Show dashboard
+                    loadingState.style.display = 'none';
+                    authRequired.style.display = 'none';
+                    dashboardContent.style.display = 'block';
+                    
+                    // Load user projects (if you have them stored)
+                    // await loadUserProjects(user.uid);
+                    
+                } catch (error) {
+                    console.error('Error loading user data:', error);
+                    // Still show dashboard with basic info
+                    updateUserInfo(user, null);
+                    loadingState.style.display = 'none';
+                    dashboardContent.style.display = 'block';
+                }
+            } else {
+                // User is not signed in
+                console.log('User not signed in');
+                loadingState.style.display = 'none';
+                authRequired.style.display = 'block';
+                dashboardContent.style.display = 'none';
+            }
+        });
+
+        // Update user info in UI
+        function updateUserInfo(user, profile) {
+            const userAvatar = document.getElementById('userAvatar');
+            const userName = document.getElementById('userName');
+            
+            if (user.photoURL) {
+                userAvatar.innerHTML = `<img src="${user.photoURL}" alt="Avatar" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">`;
+            } else {
+                userAvatar.textContent = user.displayName ? user.displayName[0].toUpperCase() : 'U';
+            }
+            
+            userName.textContent = user.displayName || user.email || 'User';
+        }
+
+        // Sign out functionality
+        document.getElementById('signOutBtn').addEventListener('click', async () => {
+            try {
+                await authFunctions.signOut();
+                window.location.href = 'index.html';
+            } catch (error) {
+                console.error('Error signing out:', error);
+            }
+        });
+
+        // Load user projects (example function)
+        async function loadUserProjects(userId) {
+            try {
+                // This would load projects from Firestore
+                // const projects = await dbFunctions.getUserProjects(userId);
+                // updateProjectsList(projects);
+                console.log('Loading projects for user:', userId);
+            } catch (error) {
+                console.error('Error loading projects:', error);
+            }
+        }
+
+        // Make functions available globally for debugging
+        window.authFunctions = authFunctions;
+        window.dbFunctions = dbFunctions;
+    </script>
+</body>
+</html>

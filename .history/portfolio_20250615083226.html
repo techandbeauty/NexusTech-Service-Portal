@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Nexus Tech Digital Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background-color: #0d1117;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 16px 0;
+            border-bottom: 1px solid #21262d;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #00d4ff;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 48px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #c9d1d9;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        .nav-links a.active {
+            color: #00d4ff;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00d4ff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 102, 255, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 24px 80px;
+            text-align: center;
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0066ff 100%);
+            color: white;
+        }
+
+        .hero-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 32px;
+            display: inline-block;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 72px);
+            font-weight: 900;
+            margin-bottom: 32px;
+            color: #ffffff;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 3vw, 24px);
+            color: #8b949e;
+            margin-bottom: 48px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+        }
+
+        /* Portfolio Grid */
+        .portfolio-section {
+            padding: 80px 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-badge {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+
+        .section-header h2 {
+            font-size: clamp(36px, 5vw, 48px);
+            font-weight: 900;
+            margin-bottom: 24px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: #8b949e;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 32px;
+            margin-bottom: 80px;
+        }
+
+        .portfolio-card {
+            background: linear-gradient(135deg, #161b22 0%, #21262d 100%);
+            border-radius: 12px;
+            border: 1px solid #30363d;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0066ff, #00d4ff);
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.2);
+            border-color: #00d4ff;
+        }
+
+        .portfolio-image {
+            height: 250px;
+            background: linear-gradient(135deg, #21262d 0%, #30363d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #00d4ff;
+            position: relative;
+        }
+
+        .portfolio-image::after {
+            content: 'Coming Soon';
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .portfolio-content {
+            padding: 32px;
+        }
+
+        .portfolio-category {
+            color: #00d4ff;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .portfolio-card h3 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: #ffffff;
+        }
+
+        .portfolio-card p {
+            color: #8b949e;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .portfolio-tech {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .tech-tag {
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .portfolio-button {
+            background: transparent;
+            color: #00d4ff;
+            padding: 12px 24px;
+            border: 2px solid #00d4ff;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .portfolio-button:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+            padding: 80px 24px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 32px 16px;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 900;
+            color: #00d4ff;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: #8b949e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0d1117;
+            color: white;
+            padding: 80px 24px 40px;
+            border-top: 1px solid #21262d;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 48px;
+        }
+
+        .footer-section h4 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            color: #00d4ff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #8b949e;
+            text-decoration: none;
+            line-height: 2;
+            transition: color 0.3s ease;
+            font-size: 16px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .footer-section a:hover {
+            color: #00d4ff;
+        }
+
+        .footer-bottom {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid #21262d;
+            text-align: center;
+            color: #8b949e;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 120px 16px 60px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Nexus Tech</a>
+            <ul class="nav-links">
+                <li><a href="apps.html">Apps</a></li>
+                <li><a href="websites.html">Websites</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                <li><a href="connect.html">Connect</a></li>
+            </ul>
+            <a href="connect.html" class="cta-button">Discovery Call</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-badge">Our Work</div>
+            <h1>Success Stories</h1>
+            <p class="hero-subtitle">Explore our portfolio of successful projects across mobile apps, web platforms, games, and digital solutions that drive real business results.</p>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio-section">
+        <div class="section-header">
+            <div class="section-badge">Featured Projects</div>
+            <h2>Recent Work</h2>
+            <p>A showcase of our latest projects and client success stories</p>
+        </div>
+
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <div class="portfolio-image">📱</div>
+                <div class="portfolio-content">
+                    <div class="portfolio-category">Mobile App</div>
+                    <h3>FitTracker Pro</h3>
+                    <p>A comprehensive fitness tracking app with social features, workout plans, and AI-powered recommendations. Built for iOS and Android.</p>
+                    <div class="portfolio-tech">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">AI/ML</span>
+                    </div>
+                    <a href="connect.html" class="portfolio-button">View Case Study</a>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-image">💻</div>
+                <div class="portfolio-content">
+                    <div class="portfolio-category">Web Platform</div>
+                    <h3>EduConnect Learning</h3>
+                    <p>Online learning platform with video streaming, interactive assessments, and real-time collaboration tools for educational institutions.</p>
+                    <div class="portfolio-tech">
+                        <span class="tech-tag">Next.js</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">WebRTC</span>
+                        <span class="tech-tag">AWS</span>
+                    </div>
+                    <a href="connect.html" class="portfolio-button">View Case Study</a>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-image">🎮</div>
+                <div class="portfolio-content">
+                    <div class="portfolio-category">Game Development</div>
+                    <h3>Puzzle Quest Adventures</h3>
+                    <p>Engaging mobile puzzle game with multiplayer features, in-app purchases, and cloud save functionality across platforms.</p>
+                    <div class="portfolio-tech">
+                        <span class="tech-tag">Unity</span>
+                        <span class="tech-tag">C#</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">IAP</span>
+                    </div>
+                    <a href="connect.html" class="portfolio-button">View Case Study</a>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-image">🏪</div>
+                <div class="portfolio-content">
+                    <div class="portfolio-category">E-Commerce</div>
+                    <h3>TechStyle Store</h3>
+                    <p>Modern e-commerce platform with advanced search, personalized recommendations, and seamless checkout experience.</p>
+                    <div class="portfolio-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Stripe</span>
+                        <span class="tech-tag">GraphQL</span>
+                        <span class="tech-tag">Docker</span>
+                    </div>
+                    <a href="connect.html" class="portfolio-button">View Case Study</a>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-image">📊</div>
+                <div class="portfolio-content">
+                    <div class="portfolio-category">SaaS Platform</div>
+                    <h3>DataFlow Analytics</h3>
+                    <p>Business intelligence dashboard with real-time data visualization, custom reports, and team collaboration features.</p>
+                    <div class="portfolio-tech">
+                        <span class="tech-tag">Vue.js</span>
+                        <span class="tech-tag">D3.js</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Redis</span>
+                    </div>
+                    <a href="connect.html" class="portfolio-button">View Case Study</a>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-image">🎨</div>
+                <div class="portfolio-content">
+                    <div class="portfolio-category">Digital Template</div>
+                    <h3>StartupLaunch Kit</h3>
+                    <p>Complete template solution for startups including landing pages, admin dashboard, and mobile app framework.</p>
+                    <div class="portfolio-tech">
+                        <span class="tech-tag">Template Kit</span>
+                        <span class="tech-tag">Multi-Platform</span>
+                        <span class="tech-tag">API Ready</span>
+                        <span class="tech-tag">Customizable</span>
+                    </div>
+                    <a href="connect.html" class="portfolio-button">View Template</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="section-header">
+            <div class="section-badge">Our Impact</div>
+            <h2>By The Numbers</h2>
+            <p>Real results from our client partnerships</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number">25+</span>
+                <span class="stat-label">Projects Completed</span>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-number">15+</span>
+                <span class="stat-label">Happy Clients</span>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-number">8+</span>
+                <span class="stat-label">Apps in Stores</span>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-number">98%</span>
+                <span class="stat-label">Client Satisfaction</span>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-number">50K+</span>
+                <span class="stat-label">Users Reached</span>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-number">3+</span>
+                <span class="stat-label">Years Experience</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Company Info</h4>
+                <p><a href="about.html">About Nexus Tech</a></p>
+                <p><a href="team.html">Meet the Team</a></p>
+                <p><a href="mission.html">Mission & Values</a></p>
+                <p><a href="press.html">Press & Media</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Services</h4>
+                <p><a href="apps.html">App Development</a></p>
+                <p><a href="websites.html">Web Development</a></p>
+                <p><a href="services.html">Game Development</a></p>
+                <p><a href="services.html">Digital Templates</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Support</h4>
+                <p><a href="support.html">Help Center</a></p>
+                <p><a href="contact.html">Contact Support</a></p>
+                <p><a href="documentation.html">Documentation</a></p>
+                <p><a href="status.html">System Status</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <p>hello@nexustech.dev</p>
+                <p>+1 (555) NEXUS-TECH</p>
+                <p><a href="connect.html">Book Discovery Call</a></p>
+                <p><a href="careers.html">Join Our Team</a></p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Nexus Tech Digital Solutions. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(13, 17, 23, 0.98)';
+                navbar.style.borderBottom = '1px solid #00d4ff';
+            } else {
+                navbar.style.background = 'rgba(13, 17, 23, 0.95)';
+                navbar.style.borderBottom = '1px solid #21262d';
+            }
+        });
+
+        // Portfolio card hover effects
+        document.querySelectorAll('.portfolio-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px) scale(1.02)';
+                card.style.borderColor = '#00d4ff';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+                card.style.borderColor = '#30363d';
+            });
+        });
+
+        // Animate stats numbers
+        const animateStats = () => {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const finalNumber = stat.textContent;
+                const isPercentage = finalNumber.includes('%');
+                const hasPlus = finalNumber.includes('+');
+                const hasK = finalNumber.includes('K');
+                const cleanNumber = finalNumber.replace(/[^\d.]/g, '');
+                const target = parseFloat(cleanNumber);
+                
+                let current = 0;
+                const increment = target / 30;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    
+                    let displayValue = Math.floor(current);
+                    if (hasK) displayValue += 'K';
+                    if (isPercentage) displayValue += '%';
+                    if (hasPlus) displayValue += '+';
+                    
+                    stat.textContent = displayValue;
+                }, 50);
+            });
+        };
+
+        // Trigger stats animation when section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+    </script>
+</body>
+</html>

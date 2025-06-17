@@ -1,0 +1,22 @@
+{
+    "sourceFile": "netlify.toml",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1749990537307,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1749990555682,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,8 @@\n+\n+\n+\n+\n [build]\n   publish = \".\"\n   command = \"echo 'No build command needed'\"\n \n"
+                }
+            ],
+            "date": 1749990537307,
+            "name": "Commit-0",
+            "content": "[build]\n  publish = \".\"\n  command = \"echo 'No build command needed'\"\n\n[build.environment]\n  NODE_VERSION = \"18\"\n\n[[redirects]]\n  from = \"/admin\"\n  to = \"/dashboard.html\"\n  status = 200\n\n[[redirects]]\n  from = \"/dashboard\"\n  to = \"/dashboard.html\"\n  status = 200\n\n[[redirects]]\n  from = \"/api/*\"\n  to = \"/.netlify/functions/:splat\"\n  status = 200\n\n# Form settings\n[forms]\n  # Enable form detection\n  forms = true\n  \n# Headers for security\n[[headers]]\n  for = \"/*\"\n  [headers.values]\n    X-Frame-Options = \"DENY\"\n    X-XSS-Protection = \"1; mode=block\"\n    X-Content-Type-Options = \"nosniff\"\n    Referrer-Policy = \"strict-origin-when-cross-origin\"\n    Content-Security-Policy = \"default-src 'self' https://nexustech-default-rtdb.firebaseio.com https://*.googleapis.com https://www.gstatic.com; script-src 'self' 'unsafe-inline' https://*.googleapis.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com wss://*.firebaseio.com\"\n\n# Environment variables (add these in Netlify dashboard)\n# FIREBASE_API_KEY\n# FIREBASE_AUTH_DOMAIN  \n# FIREBASE_PROJECT_ID\n# FIREBASE_STORAGE_BUCKET\n# FIREBASE_MESSAGING_SENDER_ID\n# FIREBASE_APP_ID"
+        }
+    ]
+}

@@ -1,0 +1,216 @@
+# Portfolio Update Guide
+
+## 🎯 How to Update Your Project Links
+
+When you're ready to add real GitHub links and case study pages, follow this guide to update your portfolio.
+
+### 📁 Current Project Structure
+
+Your portfolio currently includes these projects:
+
+1. **FitBodyFlex** - Mobile fitness app (React Native)
+2. **MyDigitalResume** - Personal website (HTML/CSS/JS)
+3. **Tech Deck App** - Educational app (Flutter)
+4. **MARC AI App** - AI assistant (Python/TensorFlow)
+5. **NEXORA** - Web platform (React/TypeScript)
+6. **Budget Calculator** - Python desktop app
+
+### 🔗 Step 1: Update GitHub Links
+
+In `portfolio.html`, find each project's GitHub link and replace `coming-soon.html` with your actual GitHub URLs:
+
+```html
+<!-- BEFORE -->
+<a href="coming-soon.html" class="portfolio-button github">GitHub</a>
+
+<!-- AFTER -->
+<a href="https://github.com/yourusername/fitbodyflex" class="portfolio-button github">GitHub</a>
+```
+
+**Update these sections for each project:**
+
+```html
+<!-- GitHub Info Section -->
+<div class="github-info">
+    <p>📂 Repository: <a href="https://github.com/yourusername/project-name">github.com/yourusername/project-name</a></p>
+</div>
+```
+
+### 📄 Step 2: Create Individual Case Study Pages
+
+Create separate HTML files for each project:
+
+- `fitbodyflex-case-study.html`
+- `mydigitalresume-case-study.html`
+- `techdeckapp-case-study.html`
+- `marc-ai-case-study.html`
+- `nexora-case-study.html`
+- `budget-calculator-case-study.html`
+
+### 🎨 Step 3: Case Study Template
+
+Use this template structure for each case study page:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Name Case Study - Nexus Tech</title>
+    <!-- Copy the same CSS from other pages -->
+</head>
+<body>
+    <!-- Navigation (same as other pages) -->
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Project Name</h1>
+        <p>Project description and overview</p>
+    </section>
+    
+    <!-- Project Details -->
+    <section class="project-details">
+        <div class="container">
+            <div class="project-overview">
+                <h2>Project Overview</h2>
+                <p>Detailed project description...</p>
+            </div>
+            
+            <div class="tech-stack">
+                <h2>Technology Stack</h2>
+                <ul>
+                    <li>Technology 1</li>
+                    <li>Technology 2</li>
+                </ul>
+            </div>
+            
+            <div class="challenges">
+                <h2>Challenges & Solutions</h2>
+                <p>What problems you solved...</p>
+            </div>
+            
+            <div class="results">
+                <h2>Results & Impact</h2>
+                <p>What you achieved...</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Screenshots/Gallery -->
+    <section class="gallery">
+        <h2>Screenshots</h2>
+        <div class="gallery-grid">
+            <img src="images/project-screenshot-1.jpg" alt="Screenshot 1">
+            <img src="images/project-screenshot-2.jpg" alt="Screenshot 2">
+        </div>
+    </section>
+    
+    <!-- Links -->
+    <section class="project-links">
+        <a href="https://github.com/yourusername/project" class="btn-primary">View Code</a>
+        <a href="https://project-demo.com" class="btn-secondary">Live Demo</a>
+    </section>
+    
+    <!-- Footer (same as other pages) -->
+</body>
+</html>
+```
+
+### 🖼️ Step 4: Add Project Images
+
+Create an `images` folder in your project root and add:
+
+```
+images/
+├── fitbodyflex/
+│   ├── screenshot-1.jpg
+│   ├── screenshot-2.jpg
+│   └── logo.png
+├── mydigitalresume/
+│   ├── homepage.jpg
+│   ├── about-section.jpg
+│   └── contact-form.jpg
+└── [other projects...]
+```
+
+### ⚙️ Step 5: Update Portfolio Links
+
+In `portfolio.html`, update the "View Case Study" links:
+
+```html
+<!-- BEFORE -->
+<a href="coming-soon.html" class="portfolio-button">View Case Study</a>
+
+<!-- AFTER -->
+<a href="fitbodyflex-case-study.html" class="portfolio-button">View Case Study</a>
+```
+
+### 🎯 Step 6: Quick Update Checklist
+
+For each project, update:
+
+- [ ] GitHub repository URL
+- [ ] Case study page link
+- [ ] Project status (Live, Beta, In Development)
+- [ ] Technology tags
+- [ ] Project description
+- [ ] Repository link in footer
+
+### 🔧 Example: FitBodyFlex Updates
+
+```html
+<!-- In portfolio.html -->
+<div class="portfolio-card">
+    <div class="portfolio-image">
+        💪
+        <div class="portfolio-status status-live">Live</div>
+    </div>
+    <div class="portfolio-content">
+        <div class="portfolio-category">Mobile App</div>
+        <h3>FitBodyFlex</h3>
+        <p>Your actual project description...</p>
+        <div class="portfolio-tech">
+            <span class="tech-tag">React Native</span>
+            <span class="tech-tag">Firebase</span>
+            <!-- Add your actual tech stack -->
+        </div>
+        <div class="portfolio-buttons">
+            <a href="fitbodyflex-case-study.html" class="portfolio-button">View Case Study</a>
+            <a href="https://github.com/yourusername/fitbodyflex" class="portfolio-button github">GitHub</a>
+        </div>
+        <div class="github-info">
+            <p>📂 Repository: <a href="https://github.com/yourusername/fitbodyflex">github.com/yourusername/fitbodyflex</a></p>
+        </div>
+    </div>
+</div>
+```
+
+### 🚀 Pro Tips
+
+1. **SEO Optimization**: Add proper meta descriptions to each case study page
+2. **Performance**: Optimize images before uploading (use WebP format if possible)
+3. **Analytics**: Add Google Analytics tracking to see which projects get the most views
+4. **Social Sharing**: Add Open Graph meta tags for better social media previews
+5. **Mobile Testing**: Test all case study pages on mobile devices
+
+### 📈 Future Enhancements
+
+Consider adding:
+- Live demo embeds
+- Code snippet highlights
+- Project metrics/statistics
+- Client testimonials (if applicable)
+- Video walkthroughs
+- Interactive elements
+
+### 🆘 Need Help?
+
+If you need assistance updating any of these elements:
+1. Check the existing code structure in other pages
+2. Use browser developer tools to test changes
+3. Keep the same design patterns for consistency
+
+---
+
+**Remember**: Update your portfolio regularly as you complete new projects or improve existing ones!

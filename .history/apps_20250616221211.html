@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apps | Nexus Tech Digital Solutions</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background-color: #0d1117;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 16px 0;
+            border-bottom: 1px solid #21262d;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #00d4ff;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 48px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #c9d1d9;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00d4ff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 102, 255, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0066ff 100%);
+            padding: 140px 0 100px;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(0, 102, 255, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+
+        .hero-title {
+            font-size: clamp(52px, 8vw, 84px);
+            font-weight: 900;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(20px, 3vw, 28px);
+            color: #00d4ff;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: clamp(18px, 2.5vw, 22px);
+            margin-bottom: 60px;
+            opacity: 0.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #c9d1d9;
+        }
+
+        .hero-image {
+            margin: 60px auto 0;
+            max-width: 400px;
+        }
+
+        /* App mockup */
+        .app-mockup {
+            width: 300px;
+            height: 600px;
+            background: linear-gradient(145deg, #161b22, #21262d);
+            border-radius: 30px;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.3);
+            overflow: hidden;
+            border: 2px solid #30363d;
+        }
+
+        .app-screen {
+            width: 260px;
+            height: 520px;
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            border-radius: 20px;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .app-screen span {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Feature Highlights */
+        .features {
+            padding: 120px 0;
+            background: #0d1117;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-badge {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+
+        .section-header h2 {
+            font-size: clamp(48px, 6vw, 64px);
+            font-weight: 900;
+            margin-bottom: 24px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .section-header p {
+            font-size: 20px;
+            color: #8b949e;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+            margin-top: 80px;
+        }
+
+        .feature-highlight {
+            background: linear-gradient(135deg, #161b22 0%, #21262d 100%);
+            border-radius: 12px;
+            padding: 48px 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #30363d;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0066ff, #00d4ff);
+        }
+
+        .feature-highlight:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.2);
+            border-color: #00d4ff;
+        }
+
+        .feature-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 32px;
+            font-size: 2.5rem;
+            color: white;
+            box-shadow: 0 10px 25px rgba(0, 102, 255, 0.3);
+        }
+
+        .feature-highlight h3 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .feature-highlight p {
+            color: #8b949e;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* Product Details */
+        .product-details {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+        }
+
+        .detail-section {
+            margin-bottom: 100px;
+        }
+
+        .detail-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .detail-text h2 {
+            font-size: clamp(40px, 5vw, 56px);
+            font-weight: 900;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            color: #ffffff;
+        }
+
+        .detail-text p {
+            font-size: 20px;
+            color: #8b949e;
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        .detail-image {
+            text-align: center;
+        }
+
+        .spec-list {
+            list-style: none;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #161b22 0%, #21262d 100%);
+            border-radius: 12px;
+            padding: 32px;
+            border: 1px solid #30363d;
+        }
+
+        .spec-list li {
+            padding: 16px 0;
+            border-bottom: 1px solid #30363d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .spec-list li:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            font-weight: 700;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .spec-value {
+            color: #00d4ff;
+            font-weight: 600;
+        }
+
+        .detail-mockup {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(145deg, #161b22, #21262d);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.2);
+            border: 1px solid #30363d;
+            color: #c9d1d9;
+            font-size: 1.2rem;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .detail-mockup::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0066ff, #00d4ff);
+        }
+
+        /* Color Variants */
+        .color-variants {
+            padding: 120px 0;
+            background: #0d1117;
+        }
+
+        .color-options {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .color-option {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            padding: 20px;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+
+        .color-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 3px solid #30363d;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .color-option:hover .color-circle {
+            border-color: #00d4ff;
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .color-midnight { background: linear-gradient(135deg, #0d1117, #21262d); }
+        .color-white { background: linear-gradient(135deg, #ffffff, #f8f9fa); }
+        .color-blue { background: linear-gradient(135deg, #0066ff, #00d4ff); }
+
+        .color-option h4 {
+            color: #ffffff;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+        }
+
+        .faq-item {
+            margin-bottom: 24px;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #161b22 0%, #21262d 100%);
+        }
+
+        .faq-question {
+            background: rgba(0, 212, 255, 0.05);
+            padding: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .faq-question:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .faq-question h3 {
+            font-size: 18px;
+            color: #ffffff;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .faq-toggle {
+            color: #00d4ff;
+            font-size: 24px;
+            font-weight: 700;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 0 24px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer.active {
+            padding: 24px;
+            max-height: 200px;
+        }
+
+        .faq-answer p {
+            color: #8b949e;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0d1117;
+            color: white;
+            padding: 80px 0 40px;
+            border-top: 1px solid #21262d;
+            text-align: center;
+        }
+
+        .footer p {
+            color: #8b949e;
+            font-size: 16px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .detail-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .color-options {
+                gap: 20px;
+            }
+
+            .nav-container {
+                padding: 0 16px;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+
+            .hero {
+                padding: 120px 0 80px;
+            }
+
+            .features,
+            .product-details,
+            .color-variants,
+            .faq {
+                padding: 80px 0;
+            }
+
+            .footer {
+                padding: 60px 0 40px;
+            }
+
+            .app-mockup {
+                width: 250px;
+                height: 500px;
+            }
+
+            .app-screen {
+                width: 210px;
+                height: 420px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Nexus Tech</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="websites.html">Websites</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#specs">Specifications</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <a href="#contact" class="cta-button">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">Revolutionary Mobile Apps</div>
+                <h1 class="hero-title">App Development</h1>
+                <div class="hero-subtitle">Innovation in Your Hands</div>
+                <p>Experience the next generation of mobile applications with seamless performance, stunning design, and innovative features that transform how users interact with technology.</p>
+                
+                <div class="hero-image">
+                    <div class="app-mockup">
+                        <div class="app-screen">
+                            <span>Your App Vision</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Highlights -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Elite Features</div>
+                <h2>Mobile Excellence</h2>
+                <p>Discover what makes our mobile applications extraordinary and industry-leading</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-highlight fade-in">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Native Performance</h3>
+                    <p>Experience unprecedented speed with optimized native code that delivers smooth 60fps animations and instant responses across iOS and Android platforms.</p>
+                </div>
+                
+                <div class="feature-highlight fade-in">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Stunning Design</h3>
+                    <p>Immerse yourself in beautiful interfaces crafted with modern design principles, featuring fluid animations and intuitive user experiences that delight users.</p>
+                </div>
+                
+                <div class="feature-highlight fade-in">
+                    <div class="feature-icon">☁️</div>
+                    <h3>Cloud Integration</h3>
+                    <p>Seamlessly sync data across devices with robust cloud infrastructure, ensuring users never lose progress and can access content anywhere, anytime.</p>
+                </div>
+                
+                <div class="feature-highlight fade-in">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Enterprise Security</h3>
+                    <p>Built with bank-level security featuring end-to-end encryption, biometric authentication, and advanced threat protection for complete peace of mind.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Details -->
+    <section class="product-details" id="specs">
+        <div class="container">
+            <div class="detail-section">
+                <div class="detail-content">
+                    <div class="detail-text">
+                        <h2>Technical Excellence</h2>
+                        <p>Built with cutting-edge technology and optimized for peak performance across all modern devices and platforms.</p>
+                        <p>Our apps deliver smooth 60fps animations, instant load times, and responsive interactions that feel natural and intuitive.</p>
+                        
+                        <ul class="spec-list">
+                            <li>
+                                <span class="spec-label">Performance</span>
+                                <span class="spec-value">60 FPS Guaranteed</span>
+                            </li>
+                            <li>
+                                <span class="spec-label">Compatibility</span>
+                                <span class="spec-value">iOS 14+ / Android 10+</span>
+                            </li>
+                            <li>
+                                <span class="spec-label">Download Size</span>
+                                <span class="spec-value">Optimized < 50MB</span>
+                            </li>
+                            <li>
+                                <span class="spec-label">Offline Mode</span>
+                                <span class="spec-value">Full Functionality</span>
+                            </li>
+                            <li>
+                                <span class="spec-label">Languages</span>
+                                <span class="spec-value">25+ Supported</span>
+                            </li>
+                            <li>
+                                <span class="spec-label">Security</span>
+                                <span class="spec-value">Enterprise Grade</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="detail-image">
+                        <div class="detail-mockup">
+                            <span>Performance Analytics</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-content">
+                    <div class="detail-image">
+                        <div class="detail-mockup">
+                            <span>User Experience</span>
+                        </div>
+                    </div>
+                    <div class="detail-text">
+                        <h2>Enhanced UX</h2>
+                        <p>Every interaction has been carefully crafted to provide the most intuitive and enjoyable user experience possible.</p>
+                        <p>From gesture recognition to voice commands, our apps adapt to how users naturally want to interact with their devices, creating seamless and engaging experiences.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Color Variants -->
+    <section class="color-variants">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Customization</div>
+                <h2>Design Themes</h2>
+                <p>Choose from multiple stunning themes to match your brand identity</p>
+            </div>
+            
+            <div class="color-options">
+                <div class="color-option">
+                    <div class="color-circle color-midnight"></div>
+                    <h4>Midnight Pro</h4>
+                </div>
+                <div class="color-option">
+                    <div class="color-circle color-white"></div>
+                    <h4>Classic Light</h4>
+                </div>
+                <div class="color-option">
+                    <div class="color-circle color-blue"></div>
+                    <h4>Nexus Blue</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Support</div>
+                <h2>Frequently Asked</h2>
+                <p>Everything you need to know about our mobile app development services</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>What platforms do you develop for?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We develop native apps for both iOS and Android platforms, as well as cross-platform solutions using React Native and Flutter. Our team ensures optimal performance and user experience on each platform.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>How long does app development take?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Development timelines vary based on complexity and features. Simple apps typically take 8-12 weeks, while complex enterprise applications can take 16-24 weeks. We provide detailed timelines during our discovery phase.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>Do you provide ongoing support and maintenance?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we offer comprehensive post-launch support including bug fixes, performance optimization, OS updates, and feature enhancements. Our support packages are tailored to your specific needs and budget.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h3>Can you help with App Store submission?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely! We handle the entire App Store and Google Play submission process, including preparing marketing materials, screenshots, descriptions, and ensuring compliance with all platform guidelines.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Nexus Tech Digital Solutions. All rights reserved. Crafted with precision for exceptional mobile experiences.</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle functionality
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const toggle = element.querySelector('.faq-toggle');
+            const isActive = answer.classList.contains('active');
+            
+            // Close all other answers
+            document.querySelectorAll('.faq-answer').forEach(ans => {
+                ans.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.faq-toggle').forEach(span => {
+                span.textContent = '+';
+                span.style.transform = 'rotate(0deg)';
+            });
+            
+            // Toggle current answer
+            if (!isActive) {
+                answer.classList.add('active');
+                toggle.textContent = '−';
+                toggle.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effects
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(13, 17, 23, 0.98)';
+                navbar.style.borderBottom = '1px solid #00d4ff';
+            } else {
+                navbar.style.background = 'rgba(13, 17, 23, 0.95)';
+                navbar.style.borderBottom = '1px solid #21262d';
+            }
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Color variant selection
+        document.querySelectorAll('.color-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove active state from all options
+                document.querySelectorAll('.color-option').forEach(opt => {
+                    opt.style.opacity = '0.7';
+                    opt.style.transform = 'scale(1)';
+                });
+                
+                // Add active state to clicked option
+                this.style.opacity = '1';
+                this.style.transform = 'scale(1.1)';
+                
+                setTimeout(() => {
+                    this.style.transform = 'scale(1.05)';
+                }, 150);
+            });
+        });
+
+        // Enhanced feature card interactions
+        document.querySelectorAll('.feature-highlight').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px) scale(1.02)';
+                card.style.borderColor = '#00d4ff';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+                card.style.borderColor = '#30363d';
+            });
+        });
+    </script>
+</body>
+</html>

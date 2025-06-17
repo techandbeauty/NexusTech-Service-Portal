@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard - Nexus Tech Digital Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background-color: #0d1117;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 16px 0;
+            border-bottom: 1px solid #21262d;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #00d4ff;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 48px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #c9d1d9;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .user-info {
+            color: #c9d1d9;
+            font-size: 14px;
+        }
+
+        .sign-out-btn {
+            background: transparent;
+            color: #00d4ff;
+            padding: 8px 16px;
+            border: 2px solid #00d4ff;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sign-out-btn:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 120px 24px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Auth Section */
+        .auth-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 60vh;
+        }
+
+        .auth-container {
+            background: linear-gradient(135deg, #161b22 0%, #21262d 100%);
+            padding: 48px;
+            border-radius: 12px;
+            border: 1px solid #30363d;
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auth-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0066ff, #00d4ff);
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 32px;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            color: #8b949e;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .auth-tab.active {
+            color: #00d4ff;
+            border-bottom: 2px solid #00d4ff;
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 16px;
+            background: rgba(13, 17, 23, 0.8);
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+
+        .auth-button {
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-bottom: 16px;
+        }
+
+        .auth-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 102, 255, 0.4);
+        }
+
+        .google-button {
+            background: #ffffff;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .google-button:hover {
+            background: #f5f5f5;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 24px 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #30363d;
+        }
+
+        .divider span {
+            background: #21262d;
+            padding: 0 16px;
+            color: #8b949e;
+            font-size: 14px;
+        }
+
+        /* Dashboard Section */
+        .dashboard-section {
+            display: none;
+        }
+
+        .dashboard-section.active {
+            display: block;
+        }
+
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .dashboard-badge {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+
+        .dashboard-header h1 {
+            font-size: clamp(36px, 5vw, 48px);
+            font-weight: 900;
+            margin-bottom: 24px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        .dashboard-card {
+            background: linear-gradient(135deg, #161b22 0%, #21262d 100%);
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid #30363d;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0066ff, #00d4ff);
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.2);
+            border-color: #00d4ff;
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: white;
+            font-size: 24px;
+        }
+
+        .dashboard-card h3 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .dashboard-card p {
+            color: #8b949e;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .card-button {
+            background: transparent;
+            color: #00d4ff;
+            padding: 12px 24px;
+            border: 2px solid #00d4ff;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+        }
+
+        .card-button:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Projects Section */
+        .projects-section {
+            margin-top: 60px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 16px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .projects-list {
+            display: grid;
+            gap: 24px;
+        }
+
+        .project-item {
+            background: rgba(0, 212, 255, 0.05);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .project-item:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: #00d4ff;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .project-type {
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .project-status {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .status-new {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+        }
+
+        .status-in-progress {
+            background: rgba(0, 123, 255, 0.2);
+            color: #007bff;
+        }
+
+        .status-completed {
+            background: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+        }
+
+        .project-details p {
+            color: #8b949e;
+            margin-bottom: 8px;
+        }
+
+        .project-details strong {
+            color: #ffffff;
+        }
+
+        /* Error Messages */
+        .error-message {
+            background: rgba(220, 53, 69, 0.1);
+            border: 1px solid #dc3545;
+            color: #dc3545;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        .success-message {
+            background: rgba(40, 167, 69, 0.1);
+            border: 1px solid #28a745;
+            color: #28a745;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        /* Loading Spinner */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0, 212, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #00d4ff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .main-content {
+                padding: 120px 16px 60px;
+            }
+
+            .auth-container {
+                margin: 0 16px;
+                padding: 32px 24px;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .user-menu {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Nexus Tech</a>
+            <ul class="nav-links">
+                <li><a href="apps.html">Apps</a></li>
+                <li><a href="websites.html">Websites</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="connect.html">Connect</a></li>
+            </ul>
+            <div class="user-menu" id="userMenu" style="display: none;">
+                <div class="user-info" id="userInfo"></div>
+                <button class="sign-out-btn" onclick="signOut()">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Authentication Section -->
+        <div class="auth-section" id="authSection">
+            <div class="auth-container">
+                <div class="auth-tabs">
+                    <div class="auth-tab active" onclick="switchTab('signin')">Sign In</div>
+                    <div class="auth-tab" onclick="switchTab('signup')">Sign Up</div>
+                </div>
+
+                <!-- Sign In Form -->
+                <form class="auth-form active" id="signinForm" onsubmit="handleSignIn(event)">
+                    <div id="signinError" class="error-message" style="display: none;"></div>
+                    
+                    <div class="form-group">
+                        <label for="signinEmail">Email</label>
+                        <input type="email" id="signinEmail" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signinPassword">Password</label>
+                        <input type="password" id="signinPassword" required>
+                    </div>
+                    
+                    <button type="submit" class="auth-button">
+                        <span id="signinText">Sign In</span>
+                        <span id="signinLoading" class="loading" style="display: none;"></span>
+                    </button>
+                    
+                    <div class="divider"><span>or</span></div>
+                    
+                    <button type="button" class="auth-button google-button" onclick="signInWithGoogle()">
+                        Sign In with Google
+                    </button>
+                </form>
+
+                <!-- Sign Up Form -->
+                <form class="auth-form" id="signupForm" onsubmit="handleSignUp(event)">
+                    <div id="signupError" class="error-message" style="display: none;"></div>
+                    
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signupCompany">Company (Optional)</label>
+                        <input type="text" id="signupCompany">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" required minlength="6">
+                    </div>
+                    
+                    <button type="submit" class="auth-button">
+                        <span id="signupText">Create Account</span>
+                        <span id="signupLoading" class="loading" style="display: none;"></span>
+                    </button>
+                    
+                    <div class="divider"><span>or</span></div>
+                    
+                    <button type="button" class="auth-button google-button" onclick="signInWithGoogle()">
+                        Sign Up with Google
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div class="dashboard-section" id="dashboardSection">
+            <div class="dashboard-header">
+                <div class="dashboard-badge">Client Dashboard</div>
+                <h1>Welcome Back</h1>
+                <p id="welcomeMessage">Manage your projects and account settings</p>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <div class="card-icon">📝</div>
+                    <h3>New Project</h3>
+                    <p>Start a new project inquiry. Tell us about your vision and we'll help bring it to life.</p>
+                    <a href="connect.html" class="card-button">Start Project</a>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-icon">📊</div>
+                    <h3>Project Status</h3>
+                    <p>View the status of your current projects and track progress in real-time.</p>
+                    <button class="card-button" onclick="loadProjects()">View Projects</button>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-icon">💬</div>
+                    <h3>Support</h3>
+                    <p>Need help? Contact our support team for technical assistance and project questions.</p>
+                    <a href="connect.html" class="card-button">Get Support</a>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-icon">⚙️</div>
+                    <h3>Account Settings</h3>
+                    <p>Update your profile information, change password, and manage account preferences.</p>
+                    <button class="card-button" onclick="showAccountSettings()">Settings</button>
+                </div>
+            </div>
+
+            <!-- Projects Section -->
+            <div class="projects-section">
+                <div class="section-header">
+                    <h2>Your Projects</h2>
+                    <p id="projectsStatus">Loading your projects...</p>
+                </div>
+                <div class="projects-list" id="projectsList">
+                    <!-- Projects will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module" src="js/firebase-config.js"></script>
+    
+    <script>
+        let currentUser = null;
+
+        // Wait for Firebase to load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if user is already signed in
+            setTimeout(() => {
+                if (window.authFunctions) {
+                    window.authFunctions.onAuthStateChanged((user) => {
+                        if (user) {
+                            currentUser = user;
+                            showDashboard(user);
+                        } else {
+                            showAuth();
+                        }
+                    });
+                }
+            }, 1000);
+        });
+
+        // Tab switching
+        function switchTab(tab) {
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tab + 'Form').classList.add('active');
+        }
+
+        // Sign in handler
+        async function handleSignIn(event) {
+            event.preventDefault();
+            setLoading('signin', true);
+            
+            const email = document.getElementById('signinEmail').value;
+            const password = document.getElementById('signinPassword').value;
+            
+            const result = await window.authFunctions.signIn(email, password);
+            
+            if (result.success) {
+                showDashboard(result.user);
+            } else {
+                showError('signin', result.error);
+            }
+            
+            setLoading('signin', false);
+        }
+
+        // Sign up handler
+        async function handleSignUp(event) {
+            event.preventDefault();
+            setLoading('signup', true);
+            
+            const name = document.getElementById('signupName').value;
+            const company = document.getElementById('signupCompany').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            
+            const userData = {
+                displayName: name,
+                company: company
+            };
+            
+            const result = await window.authFunctions.signUp(email, password, userData);
+            
+            if (result.success) {
+                showDashboard(result.user);
+            } else {
+                showError('signup', result.error);
+            }
+            
+            setLoading('signup', false);
+        }
+
+        // Google sign in
+        async function signInWithGoogle() {
+            const result = await window.authFunctions.signInWithGoogle();
+            
+            if (result.success) {
+                showDashboard(result.user);
+            } else {
+                showError('signin', result.error);
+            }
+        }
+
+        // Sign out
+        async function signOut() {
+            await window.authFunctions.signOut();
+            showAuth();
+        }
+
+        // Show authentication section
+        function showAuth() {
+            document.getElementById('authSection').style.display = 'flex';
+            document.getElementById('dashboardSection').classList.remove('active');
+            document.getElementById('userMenu').style.display = 'none';
+            currentUser = null;
+        }
+
+        // Show dashboard
+        function showDashboard(user) {
+            document.getElementById('authSection').style.display = 'none';
+            document.getElementById('dashboardSection').classList.add('active');
+            document.getElementById('userMenu').style.display = 'flex';
+            document.getElementById('userInfo').textContent = `Welcome, ${user.displayName || user.email}`;
+            document.getElementById('welcomeMessage').textContent = `Hello ${user.displayName || user.email.split('@')[0]}, manage your projects and account settings`;
+            
+            currentUser = user;
+            loadProjects();
+        }
+
+        // Load user projects
+        async function loadProjects() {
+            if (!currentUser) return;
+            
+            document.getElementById('projectsStatus').textContent = 'Loading your projects...';
+            
+            const result = await window.dbFunctions.getUserInquiries(currentUser.uid);
+            
+            if (result.success) {
+                displayProjects(result.data);
+            } else {
+                document.getElementById('projectsStatus').textContent = 'Error loading projects. Please try again.';
+            }
+        }
+
+        // Display projects
+        function displayProjects(projects) {
+            const projectsList = document.getElementById('projectsList');
+            
+            if (projects.length === 0) {
+                document.getElementById('projectsStatus').textContent = 'No projects found. Start your first project!';
+                projectsList.innerHTML = '';
+                return;
+            }
+            
+            document.getElementById('projectsStatus').textContent = `${projects.length} project(s) found`;
+            
+            projectsList.innerHTML = projects.map(project => `
+                <div class="project-item">
+                    <div class="project-header">
+                        <div class="project-type">${project.projectType || 'General'}</div>
+                        <div class="project-status status-${project.status || 'new'}">${project.status || 'New'}</div>
+                    </div>
+                    <div class="project-details">
+                        <p><strong>Budget:</strong> ${project.budget || 'Not specified'}</p>
+                        <p><strong>Timeline:</strong> ${project.timeline || 'Not specified'}</p>
+                        <p><strong>Message:</strong> ${project.message || 'No details provided'}</p>
+                        <p><strong>Submitted:</strong> ${project.createdAt ? new Date(project.createdAt.seconds * 1000).toLocaleDateString() : 'Unknown'}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Show account settings (placeholder)
+        function showAccountSettings() {
+            alert('Account settings feature coming soon! Contact us if you need to update your information.');
+        }
+
+        // Helper functions
+        function setLoading(type, loading) {
+            document.getElementById(`${type}Text`).style.display = loading ? 'none' : 'inline';
+            document.getElementById(`${type}Loading`).style.display = loading ? 'inline-block' : 'none';
+        }
+
+        function showError(type, message) {
+            const errorEl = document.getElementById(`${type}Error`);
+            errorEl.textContent = message;
+            errorEl.style.display = 'block';
+            setTimeout(() => {
+                errorEl.style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
