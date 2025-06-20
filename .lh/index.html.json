@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 19,
+            "activePatchIndex": 22,
             "patches": [
                 {
                     "date": 1749990390068,
@@ -84,6 +84,18 @@
                 {
                     "date": 1750183674335,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -497,14 +497,14 @@\n                 \n                 <!-- Slide 1 - E-commerce Platform -->\n                 <div class=\"project-slide active\" style=\"background-image: url('Assets/invisible-game.jpg');\">\n                     <div class=\"project-info\">\n-                      <!-- -->  <div class=\"project-category\">Marketing Solution</div> -->\n+                      <!--  <div class=\"project-category\">Marketing Solution</div> -->\n                         <h2 class=\"project-title\">M.A.R.C Ai</h2>\n                         <p class=\"project-description\">\n                             full service marketing & advertising Ai\n                         </p>\n-                        <div class=\"project-tech\">\n+                        <!-- <div class=\"project-tech\">\n                             <span class=\"tech-tag\">React</span>\n                             <span class=\"tech-tag\">Swift</span>\n                             <span class=\"tech-tag\">Stripe</span>\n                             <span class=\"tech-tag\">AI/ML</span>\n"
+                },
+                {
+                    "date": 1750449004298,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -498,18 +498,18 @@\n                 <!-- Slide 1 - E-commerce Platform -->\n                 <div class=\"project-slide active\" style=\"background-image: url('Assets/invisible-game.jpg');\">\n                     <div class=\"project-info\">\n                       <!--  <div class=\"project-category\">Marketing Solution</div> -->\n-                        <h2 class=\"project-title\">M.A.R.C Ai</h2>\n+                        <h2 class=\"project-title\"> </h2>\n                         <p class=\"project-description\">\n                             full service marketing & advertising Ai\n                         </p>\n                         <!-- <div class=\"project-tech\">\n                             <span class=\"tech-tag\">React</span>\n                             <span class=\"tech-tag\">Swift</span>\n                             <span class=\"tech-tag\">Stripe</span>\n                             <span class=\"tech-tag\">AI/ML</span>\n-                        </div>\n+                        </div> -->\n                     </div>\n                 </div>\n \n                 <!-- Slide 2 - Mobile App -->\n"
+                },
+                {
+                    "date": 1750449016852,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -499,9 +499,9 @@\n                 <div class=\"project-slide active\" style=\"background-image: url('Assets/invisible-game.jpg');\">\n                     <div class=\"project-info\">\n                       <!--  <div class=\"project-category\">Marketing Solution</div> -->\n                         <h2 class=\"project-title\"> </h2>\n-                        <p class=\"project-description\">\n+                       <!-- --> <p class=\"project-description\">\n                             full service marketing & advertising Ai\n                         </p>\n                         <!-- <div class=\"project-tech\">\n                             <span class=\"tech-tag\">React</span>\n"
+                },
+                {
+                    "date": 1750449022149,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -499,9 +499,9 @@\n                 <div class=\"project-slide active\" style=\"background-image: url('Assets/invisible-game.jpg');\">\n                     <div class=\"project-info\">\n                       <!--  <div class=\"project-category\">Marketing Solution</div> -->\n                         <h2 class=\"project-title\"> </h2>\n-                       <!-- --> <p class=\"project-description\">\n+                       <!-- <p class=\"project-description\">\n                             full service marketing & advertising Ai\n                         </p> -->\n                         <!-- <div class=\"project-tech\">\n                             <span class=\"tech-tag\">React</span>\n"
                 }
             ],
             "date": 1749990390068,
