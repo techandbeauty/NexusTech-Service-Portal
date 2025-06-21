@@ -4,8 +4,9 @@
     <!-- Meta tags for document setup and mobile responsiveness -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Tech Digital Solutions</title>
+    <title>Nexus Tech Digital Solutions - Request Your Project</title>
     
+    <!-- CSS Code -->
     <style>
         /* === CSS RESET === */
         /* Remove default browser margins, padding, and set consistent box-sizing */
@@ -165,25 +166,14 @@
             height: 100%;
             opacity: 0; /* Hidden by default */
             transition: opacity 1s ease-in-out; /* Smooth fade transition */
+            background-size: cover; /* Fill the entire space */
+            background-repeat: no-repeat; /* Prevents image repetition */
+            background-position: center; /* Centers the image */
             background-color: #0d1117; /* Fallback background color */
             display: flex;
             align-items: flex-end; /* Content at bottom of slide */
             padding: 60px;
             z-index: 1;
-            overflow: hidden; /* Ensures images don't overflow */
-        }
-
-        /* Slide background images using img tags for better mobile support */
-        .slide-image {
-            position: absolute; /* Position behind content */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Same as background-size: cover */
-            object-position: center; /* Same as background-position: center */
-            z-index: -1; /* Behind all content */
-            pointer-events: none; /* Don't interfere with clicking */
         }
 
         /* Active slide is visible */
@@ -817,6 +807,8 @@
             .waitlist-title { font-size: 3.2rem; }
         }
     </style>
+
+    <!-- HTML Document Javascript inside-->
 </head>
 <body>
     <!-- Custom cursor element that follows mouse movement -->
@@ -850,8 +842,7 @@
                 <div class="progress-bar"></div>
                 
                 <!-- Slide 1: NEXORA Tech Environment -->
-                <div class="project-slide active">
-                    <img src="assets/image1.PNG" alt="NEXORA Tech Environment" class="slide-image">
+                <div class="project-slide active" style="background-image: url('assets/image1.png');">
                     <div class="project-info">
                         <div class="project-category">Tech Environment</div>
                         <h2 class="project-title">NEXORA</h2>
@@ -866,8 +857,7 @@
                 </div>
 
                 <!-- Slide 2: NEXORA Branding -->
-                <div class="project-slide">
-                    <img src="assets/image2.PNG" alt="NEXORA Branding" class="slide-image">
+                <div class="project-slide" style="background-image: url('assets/image2.png');">
                     <div class="project-info">
                         <div class="project-category">Game Branding</div>
                         <h2 class="project-title">NEXORA Identity</h2>
@@ -882,8 +872,7 @@
                 </div>
 
                 <!-- Slide 3: Development Process -->
-                <div class="project-slide">
-                    <img src="assets/image3.PNG" alt="Development Process" class="slide-image">
+                <div class="project-slide" style="background-image: url('assets/image3.png');">
                     <div class="project-info">
                         <div class="project-category">Development Studio</div>
                         <h2 class="project-title">Behind the Scenes</h2>
@@ -898,8 +887,7 @@
                 </div>
 
                 <!-- Slide 4: App Development -->
-                <div class="project-slide">
-                    <img src="assets/image4.PNG" alt="App Development" class="slide-image">
+                <div class="project-slide" style="background-image: url('assets/image4.png');">
                     <div class="project-info">
                         <div class="project-category">Mobile Development</div>
                         <h2 class="project-title">App Development</h2>
@@ -914,8 +902,7 @@
                 </div>
 
                 <!-- Slide 5: Game Development -->
-                <div class="project-slide">
-                    <img src="assets/image5.PNG" alt="Game Development" class="slide-image">
+                <div class="project-slide" style="background-image: url('assets/image5.png');">
                     <div class="project-info">
                         <div class="project-category">Game Development</div>
                         <h2 class="project-title">3D Character Systems</h2>
@@ -930,8 +917,7 @@
                 </div>
 
                 <!-- Slide 6: Tech Leadership -->
-                <div class="project-slide">
-                    <img src="assets/image6.PNG" alt="Tech Leadership" class="slide-image">
+                <div class="project-slide" style="background-image: url('assets/image6.png');">
                     <div class="project-info">
                         <div class="project-category">Tech Leadership</div>
                         <h2 class="project-title">Digital Innovation</h2>
@@ -946,8 +932,7 @@
                 </div>
 
                 <!-- Slide 7: Action Sequence -->
-                <div class="project-slide">
-                    <img src="assets/image7.PNG" alt="Action Sequence" class="slide-image">
+                <div class="project-slide" style="background-image: url('assets/image7.png');">
                     <div class="project-info">
                         <div class="project-category">Action Adventure</div>
                         <h2 class="project-title">Dynamic Gameplay</h2>
@@ -978,7 +963,7 @@
         <div class="waitlist-panel">
             <div class="waitlist-content">
                 <!-- Price badge -->
-                <div class="launch-badge">$25 Consultation</div>
+                <div class="launch-badge"> Project Con Consultation</div>
                 
                 <!-- Form title and description -->
                 <h1 class="waitlist-title">Request Your Project</h1>
@@ -1050,7 +1035,7 @@
                     </div>
                     
                     <!-- Submit button -->
-                    <button type="submit" class="submit-btn">Request $25 Consultation</button>
+                    <button type="submit" class="submit-btn">Request Project Consultation</button>
                 </form>
 
                 <!-- Success message (hidden by default, shown after form submission) -->
@@ -1284,7 +1269,12 @@
         </div>
     </div>
 
+
+   <!-- // === JAVASCRIPT FUNCTIONALITY === // -->
     <script>
+
+
+
         // === JAVASCRIPT FUNCTIONALITY === //
         
         // Get references to important DOM elements
@@ -1591,6 +1581,21 @@
             }
         }
 
+        /**
+         * Forces background image properties on mobile devices
+         */
+        function forceMobileBackgrounds() {
+            if (window.innerWidth <= 768) {
+                slides.forEach((slide, index) => {
+                    slide.style.backgroundSize = 'cover';
+                    slide.style.backgroundPosition = 'center';
+                    slide.style.backgroundRepeat = 'no-repeat';
+                    slide.style.backgroundAttachment = 'scroll';
+                    console.log(`Mobile background styles forced for slide ${index}`);
+                });
+            }
+        }
+
         // === SERVICE GUIDE FUNCTIONALITY === //
         
         /**
@@ -1628,13 +1633,24 @@
         
         // Initialize everything when page loads
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initSlideshow);
+            // Page is still loading - wait for DOM content to load
+            document.addEventListener('DOMContentLoaded', () => {
+                initSlideshow();
+                initializeCursor();
+                forceMobileBackgrounds();
+            });
         } else {
+            // Page already loaded - initialize immediately
             initSlideshow();
+            initializeCursor();
+            forceMobileBackgrounds();
         }
 
-        // Re-initialize cursor on window resize
-        window.addEventListener('resize', initializeCursor);
+        // Re-initialize cursor and force mobile backgrounds on window resize
+        window.addEventListener('resize', () => {
+            initializeCursor();
+            forceMobileBackgrounds();
+        });
     </script>
 </body>
 </html>
