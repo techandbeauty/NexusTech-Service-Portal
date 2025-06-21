@@ -1,6 +1,6 @@
 # Nexus Tech Digital Solutions Website
 
-A modern, gaming-inspired website for Nexus Tech Digital Solutions with integrated Netlify forms and Firebase authentication.
+A modern, gaming-inspired website for Nexus Tech Digital Solutions. Integrated with Netlify and Firebase.
 
 ## 🚀 Features
 
@@ -265,10 +265,11 @@ nexus-tech-website/
 ## 📞 Support
 
 For questions about this setup:
-- **Email**: hello@nexustech.dev
-- **Website**: [Your deployed site URL]
-- **Repository**: [Your GitHub repo URL]
+- **Email**: info@nexustechdigitalsolutions.net
+- **Phone**: (703) 202.1433
+- **Website**: www.nexustechdigitalsolutions.net
+- **Repository**: GitHub
 
 ---
 
-**Built with ❤️ for Nexus Tech Digital Solutions**
+** Built with ❤️  Nexus Tech Digital Solutions **
