@@ -4,7 +4,7 @@
     <!-- Meta tags for document setup and mobile responsiveness -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Tech Digital Solutions - Request Your Project</title>
+    <title>Nexus Tech Digital Solutions </title>
     
     <style>
         /* === CSS RESET === */
@@ -71,16 +71,6 @@
         }
 
         /* Company logo styling */
-        .logo-link {
-            text-decoration: none; /* Remove default link underline */
-            color: inherit; /* Inherit color from parent */
-            transition: all 0.3s ease; /* Smooth transitions for hover effects */
-        }
-
-        .logo-link:hover {
-            transform: translateY(-1px); /* Subtle lift effect on hover */
-        }
-
         .logo {
             font-size: 28px;
             font-weight: 900; /* Extra bold */
@@ -88,14 +78,6 @@
             text-transform: uppercase; /* ALL CAPS */
             letter-spacing: 2px; /* Space between letters */
             text-shadow: 0 0 20px rgba(0, 212, 255, 0.5); /* Glowing effect */
-            transition: all 0.3s ease; /* Smooth transitions */
-            cursor: pointer; /* Show pointer cursor */
-        }
-
-        /* Enhanced hover effect for the logo */
-        .logo-link:hover .logo {
-            text-shadow: 0 0 30px rgba(0, 212, 255, 0.8); /* Stronger glow on hover */
-            color: #00e6ff; /* Slightly brighter blue on hover */
         }
 
         /* Status indicator in top right */
@@ -787,10 +769,6 @@
             .tech-tag { font-size: 10px; padding: 5px 10px; margin-bottom: 8px; }
             .project-tech { gap: 8px; }
             .logo { font-size: 20px; }
-            /* Ensure logo link works on small mobile */
-            .logo-link:hover {
-                transform: none; /* Remove hover effects on small mobile */
-            }
             .ui-corner { width: 20px; height: 20px; border-width: 1px; }
             .ui-corner.top-left, .ui-corner.top-right { top: 15px; }
             .ui-corner.bottom-left, .ui-corner.bottom-right { bottom: 15px; }
@@ -1291,8 +1269,8 @@
             }
         });
 
-        // Add hover effect to interactive elements (including logo and service guide button)
-        document.querySelectorAll('button, .nav-dot, input, select, textarea, .service-guide-btn, .calendly-btn, .logo-link').forEach(el => {
+        // Add hover effect to interactive elements (including new service guide button)
+        document.querySelectorAll('button, .nav-dot, input, select, textarea, .service-guide-btn, .calendly-btn').forEach(el => {
             el.addEventListener('mouseenter', () => cursor && cursor.classList.add('hover'));
             el.addEventListener('mouseleave', () => cursor && cursor.classList.remove('hover'));
         });
