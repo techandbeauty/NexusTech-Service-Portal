@@ -147,10 +147,8 @@
             height: 100%;
             opacity: 0; /* Hidden by default */
             transition: opacity 1s ease-in-out; /* Smooth fade transition */
-            background-size: cover; /* Fill the entire space */
-            background-repeat: no-repeat; /* Prevents image repetition */
-            background-position: center; /* Centers the image */
-            background-color: #0d1117; /* Fallback background color */
+            background-size: cover; /* Background image covers entire slide */
+            background-position: center;
             display: flex;
             align-items: flex-end; /* Content at bottom of slide */
             padding: 60px;
@@ -990,27 +988,16 @@
          */
         function initSlideshow() {
             if (slides.length > 0) {
-                console.log('Initializing slideshow with', slides.length, 'slides');
+                // Ensure first slide is active
+                slides[0].classList.add('active');
+                if (dots.length > 0) dots[0].classList.add('active');
                 
-                // Reset all slides
-                slides.forEach((slide, index) => {
-                    slide.classList.remove('active');
-                    if (index === 0) slide.classList.add('active');
-                });
-                
-                // Reset all dots
-                dots.forEach((dot, index) => {
-                    dot.classList.remove('active');
-                    if (index === 0) dot.classList.add('active');
-                });
-                
-                // Start the slideshow after a short delay
+                // Start the slideshow after short delay
                 setTimeout(() => {
                     startSlideshow();
-                    console.log('Slideshow started');
-                }, 1000);
-            } else {
-                console.log('No slides found');
+                }, 500);
+                
+                console.log('Slideshow initialized with', slides.length, 'slides');
             }
         }
 
@@ -1127,12 +1114,14 @@
         if (document.readyState === 'loading') {
             // Page is still loading - wait for DOM content to load
             document.addEventListener('DOMContentLoaded', () => {
-                initSlideshow();
+                showSlide(0);
+                setTimeout(startSlideshow, 500);
                 initializeCursor();
             });
         } else {
             // Page already loaded - initialize immediately
-            initSlideshow();
+            showSlide(0);
+            setTimeout(startSlideshow, 500);
             initializeCursor();
         }
 

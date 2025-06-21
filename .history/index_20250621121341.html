@@ -1,194 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta tags for document setup and mobile responsiveness -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexus Tech Digital Solutions - Request Your Project</title>
-    
     <style>
-        /* === CSS RESET === */
-        /* Remove default browser margins, padding, and set consistent box-sizing */
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box; /* Makes width/height include padding and border */
+            box-sizing: border-box;
         }
 
-        /* === BODY STYLES === */
         body {
-            /* System font stack - uses native fonts for better performance */
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-            background: #000000; /* Pure black background */
-            color: #ffffff; /* White text */
-            overflow-x: hidden; /* Prevent horizontal scroll */
-            cursor: none; /* Hide default cursor (we'll create a custom one) */
-            min-height: 100vh; /* Minimum height of viewport */
+            background: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+            cursor: none;
+            min-height: 100vh;
         }
 
-        /* === CUSTOM CURSOR === */
-        /* Creates a glowing blue custom cursor that follows mouse movement */
         .cursor {
-            position: fixed; /* Stays in place relative to viewport */
+            position: fixed;
             width: 20px;
             height: 20px;
-            /* Gradient background for the cursor */
             background: linear-gradient(45deg, #00d4ff, #0066ff);
-            border-radius: 50%; /* Makes it circular */
-            pointer-events: none; /* Cursor doesn't interfere with clicking */
-            z-index: 9999; /* High z-index to appear above everything */
-            transition: transform 0.1s ease; /* Smooth scaling animation */
-            mix-blend-mode: difference; /* Creates contrast effect with background */
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            mix-blend-mode: difference;
         }
 
-        /* Hover state - cursor grows when hovering over interactive elements */
-        .cursor.hover { 
-            transform: scale(2); 
-        }
+        .cursor.hover { transform: scale(2); }
 
-        /* === HEADER/NAVIGATION === */
         .header {
-            position: fixed; /* Stays at top when scrolling */
+            position: fixed;
             top: 0;
             width: 100%;
-            /* Semi-transparent black background with blur effect */
             background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(20px); /* Blurs content behind header */
-            z-index: 1000; /* High z-index to stay above other content */
+            backdrop-filter: blur(20px);
+            z-index: 1000;
             padding: 15px 0;
-            /* Subtle blue border at bottom */
             border-bottom: 1px solid rgba(0, 212, 255, 0.3);
         }
 
-        /* Navigation container */
         .nav {
-            max-width: 1400px; /* Maximum width for large screens */
-            margin: 0 auto; /* Centers the nav */
-            display: flex; /* Flexbox for layout */
-            justify-content: space-between; /* Space between logo and status */
-            align-items: center; /* Vertically center items */
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 0 30px;
         }
 
-        /* Company logo styling */
         .logo {
             font-size: 28px;
-            font-weight: 900; /* Extra bold */
-            color: #00d4ff; /* Bright blue */
-            text-transform: uppercase; /* ALL CAPS */
-            letter-spacing: 2px; /* Space between letters */
-            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5); /* Glowing effect */
+            font-weight: 900;
+            color: #00d4ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
         }
 
-        /* Status indicator in top right */
         .nav-status {
             display: flex;
             align-items: center;
-            gap: 20px; /* Space between elements */
+            gap: 20px;
             font-size: 14px;
-            color: #8b949e; /* Gray text */
+            color: #8b949e;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        /* Animated dot showing system is online */
         .status-indicator {
             width: 12px;
             height: 12px;
             background: #00d4ff;
             border-radius: 50%;
-            animation: pulse 2s infinite; /* Continuously pulses */
-            box-shadow: 0 0 10px rgba(0, 212, 255, 0.8); /* Glow effect */
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
         }
 
-        /* Pulse animation definition */
         @keyframes pulse {
-            0%, 100% { 
-                opacity: 1; 
-                transform: scale(1); 
-            }
-            50% { 
-                opacity: 0.5; 
-                transform: scale(1.2); 
-            }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
         }
 
-        /* === MAIN LAYOUT === */
         .main-container {
-            min-height: 100vh; /* Full viewport height */
-            display: flex; /* Side-by-side layout */
+            min-height: 100vh;
+            display: flex;
             position: relative;
-            padding-top: 70px; /* Space for fixed header */
+            padding-top: 70px;
         }
 
-        /* === LEFT PANEL - PROJECT SHOWCASE === */
         .project-panel {
-            flex: 1; /* Takes up remaining space */
+            flex: 1;
             position: relative;
-            /* Gradient background from dark gray to darker gray */
             background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
-            min-height: calc(100vh - 70px); /* Full height minus header */
+            min-height: calc(100vh - 70px);
         }
 
-        /* Container for the slideshow carousel */
         .project-carousel {
             position: relative;
             width: 100%;
             height: 100%;
-            overflow: hidden; /* Hides slides that aren't active */
+            overflow: hidden;
         }
 
-        /* Individual slides in the carousel */
         .project-slide {
-            position: absolute; /* All slides stacked on top of each other */
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0; /* Hidden by default */
-            transition: opacity 1s ease-in-out; /* Smooth fade transition */
-            background-size: cover; /* Fill the entire space */
-            background-repeat: no-repeat; /* Prevents image repetition */
-            background-position: center; /* Centers the image */
-            background-color: #0d1117; /* Fallback background color */
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
             display: flex;
-            align-items: flex-end; /* Content at bottom of slide */
+            align-items: flex-end;
             padding: 60px;
             z-index: 1;
         }
 
-        /* Active slide is visible */
         .project-slide.active { 
             opacity: 1; 
-            z-index: 2; /* Above other slides */
+            z-index: 2;
         }
 
-        /* First slide is visible by default */
         .project-slide:first-child {
             opacity: 1;
         }
 
-        /* Overlay gradient for better text readability */
         .project-slide::before {
-            content: ''; /* Required for pseudo-elements */
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            /* Multi-color gradient overlay */
             background: linear-gradient(135deg, rgba(13, 17, 23, 0.7) 0%, rgba(0, 102, 255, 0.3) 50%, rgba(0, 212, 255, 0.2) 100%);
             z-index: 1;
         }
 
-        /* Project information content */
         .project-info {
             position: relative;
-            z-index: 2; /* Above the overlay */
+            z-index: 2;
             max-width: 500px;
         }
 
-        /* Project category label */
         .project-category {
             color: #00d4ff;
             font-size: 14px;
@@ -198,59 +159,53 @@
             margin-bottom: 10px;
         }
 
-        /* Main project title */
         .project-title {
             font-size: 3rem;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: -1px; /* Tighter letter spacing for large text */
+            letter-spacing: -1px;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.8); /* Drop shadow */
+            text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.8);
         }
 
-        /* Project description text */
         .project-description {
             font-size: 1.1rem;
-            line-height: 1.6; /* Better readability */
-            color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 30px;
         }
 
-        /* Container for technology tags */
         .project-tech {
             display: flex;
-            gap: 15px; /* Space between tags */
-            flex-wrap: wrap; /* Wraps to new line if needed */
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
-        /* Individual technology tags */
         .tech-tag {
-            background: rgba(0, 212, 255, 0.2); /* Semi-transparent blue */
+            background: rgba(0, 212, 255, 0.2);
             border: 1px solid rgba(0, 212, 255, 0.5);
             color: #00d4ff;
             padding: 8px 16px;
-            border-radius: 20px; /* Rounded pill shape */
+            border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        /* === RIGHT PANEL - CONTACT FORM === */
         .waitlist-panel {
-            width: 500px; /* Fixed width */
+            width: 500px;
             background: linear-gradient(135deg, #000000 0%, #0d1117 100%);
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Centers content vertically */
-            align-items: center; /* Centers content horizontally */
+            justify-content: center;
+            align-items: center;
             padding: 60px 40px;
             position: relative;
-            border-left: 1px solid rgba(0, 212, 255, 0.3); /* Separator line */
+            border-left: 1px solid rgba(0, 212, 255, 0.3);
             min-height: calc(100vh - 70px);
         }
 
-        /* Background effects for the form panel */
         .waitlist-panel::before {
             content: '';
             position: absolute;
@@ -258,21 +213,18 @@
             left: 0;
             right: 0;
             bottom: 0;
-            /* Multiple radial gradients for ambient lighting effect */
             background: radial-gradient(circle at 50% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(0, 102, 255, 0.1) 0%, transparent 50%);
             z-index: 1;
         }
 
-        /* Form content container */
         .waitlist-content {
             position: relative;
-            z-index: 2; /* Above background effects */
+            z-index: 2;
             text-align: center;
             width: 100%;
             max-width: 100%;
         }
 
-        /* "$25 Consultation" badge */
         .launch-badge {
             background: linear-gradient(45deg, #0066ff, #00d4ff);
             color: white;
@@ -284,24 +236,21 @@
             letter-spacing: 2px;
             margin-bottom: 30px;
             display: inline-block;
-            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3); /* Drop shadow */
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
         }
 
-        /* Main form title */
         .waitlist-title {
             font-size: 2.8rem;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: -1px;
             margin-bottom: 20px;
-            /* Gradient text effect */
             background: linear-gradient(45deg, #ffffff, #00d4ff);
-            -webkit-background-clip: text; /* Clips background to text */
-            -webkit-text-fill-color: transparent; /* Makes text transparent to show gradient */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        /* Form subtitle */
         .waitlist-subtitle {
             font-size: 1.2rem;
             color: #8b949e;
@@ -309,61 +258,53 @@
             line-height: 1.6;
         }
 
-        /* === FORM STYLES === */
         .waitlist-form {
             width: 100%;
             margin-bottom: 40px;
         }
 
-        /* Form field groups */
         .form-group {
             margin-bottom: 20px;
         }
 
-        /* All input fields, selects, and textareas */
         .form-group input,
         .form-group select,
         .form-group textarea {
             width: 100%;
-            background: rgba(255, 255, 255, 0.05); /* Very subtle white background */
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(0, 212, 255, 0.3);
             border-radius: 8px;
             padding: 16px 20px;
             color: white;
             font-size: 16px;
-            transition: all 0.3s ease; /* Smooth transitions */
-            font-family: inherit; /* Uses same font as parent */
+            transition: all 0.3s ease;
+            font-family: inherit;
         }
 
-        /* Focus states for form fields */
         .form-group input:focus,
         .form-group select:focus,
         .form-group textarea:focus {
-            outline: none; /* Removes default browser outline */
-            border-color: #00d4ff; /* Blue border when focused */
-            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2); /* Glow effect */
-            background: rgba(255, 255, 255, 0.08); /* Slightly more opaque */
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
         }
 
-        /* Placeholder text styling */
         .form-group input::placeholder,
         .form-group textarea::placeholder {
-            color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+            color: rgba(255, 255, 255, 0.5);
         }
 
-        /* Select dropdown options */
         .form-group option {
-            background: #161b22; /* Dark background for dropdown */
+            background: #161b22;
             color: white;
         }
 
-        /* Textarea specific styling */
         .form-group textarea {
-            resize: vertical; /* Only allow vertical resizing */
+            resize: vertical;
             min-height: 100px;
         }
 
-        /* Submit button */
         .submit-btn {
             width: 100%;
             background: linear-gradient(45deg, #0066ff, #00d4ff);
@@ -380,20 +321,15 @@
             box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
         }
 
-        /* Button hover effects */
         .submit-btn:hover {
-            transform: translateY(-2px); /* Lifts button up */
-            box-shadow: 0 15px 40px rgba(0, 102, 255, 0.4); /* Bigger shadow */
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0, 102, 255, 0.4);
         }
 
-        /* Button active (pressed) state */
-        .submit-btn:active { 
-            transform: translateY(0); /* Returns to normal position */
-        }
+        .submit-btn:active { transform: translateY(0); }
 
-        /* Feature list below the form */
         .waitlist-features {
-            list-style: none; /* Removes default bullet points */
+            list-style: none;
             text-align: left;
         }
 
@@ -401,77 +337,68 @@
             padding: 8px 0;
             color: #8b949e;
             position: relative;
-            padding-left: 30px; /* Space for custom bullet */
+            padding-left: 30px;
         }
 
-        /* Custom bullet points using pseudo-elements */
         .waitlist-features li::before {
-            content: '▶'; /* Triangle arrow */
+            content: '▶';
             position: absolute;
             left: 0;
             color: #00d4ff;
             font-size: 12px;
         }
 
-        /* === CAROUSEL NAVIGATION === */
         .carousel-nav {
             position: absolute;
             bottom: 30px;
             right: 30px;
             display: flex;
             gap: 15px;
-            z-index: 3; /* Above slides */
+            z-index: 3;
         }
 
-        /* Individual navigation dots */
         .nav-dot {
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3); /* Semi-transparent white */
+            background: rgba(255, 255, 255, 0.3);
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        /* Active dot styling */
         .nav-dot.active {
             background: #00d4ff;
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.8); /* Glow effect */
-            transform: scale(1.2); /* Slightly larger */
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.8);
+            transform: scale(1.2);
         }
 
-        /* Progress bar for slide timing */
         .progress-bar {
             position: absolute;
             bottom: 0;
             left: 0;
             height: 3px;
             background: #00d4ff;
-            transition: width 5s linear; /* 5-second animation */
+            transition: width 5s linear;
             z-index: 3;
-            width: 0%; /* Starts at 0 width */
+            width: 0%;
         }
 
-        /* Success message (hidden by default) */
         .success-message {
-            display: none; /* Hidden until form is submitted */
-            background: rgba(34, 197, 94, 0.1); /* Green background */
+            display: none;
+            background: rgba(34, 197, 94, 0.1);
             border: 1px solid rgba(34, 197, 94, 0.3);
-            color: #22c55e; /* Green text */
+            color: #22c55e;
             padding: 20px;
             border-radius: 8px;
             margin-top: 20px;
             text-align: center;
         }
 
-        /* Calendly button hover effect */
         .calendly-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(0, 102, 255, 0.4);
         }
 
-        /* === UI CORNER DECORATIONS === */
-        /* Decorative corner elements */
         .ui-corner {
             position: absolute;
             width: 30px;
@@ -479,42 +406,16 @@
             border: 2px solid rgba(0, 212, 255, 0.5);
         }
 
-        /* Positioning for each corner */
-        .ui-corner.top-left { 
-            top: 20px; 
-            left: 20px; 
-            border-right: none; 
-            border-bottom: none; 
-        }
-        .ui-corner.top-right { 
-            top: 20px; 
-            right: 20px; 
-            border-left: none; 
-            border-bottom: none; 
-        }
-        .ui-corner.bottom-left { 
-            bottom: 20px; 
-            left: 20px; 
-            border-right: none; 
-            border-top: none; 
-        }
-        .ui-corner.bottom-right { 
-            bottom: 20px; 
-            right: 20px; 
-            border-left: none; 
-            border-top: none; 
-        }
+        .ui-corner.top-left { top: 20px; left: 20px; border-right: none; border-bottom: none; }
+        .ui-corner.top-right { top: 20px; right: 20px; border-left: none; border-bottom: none; }
+        .ui-corner.bottom-left { bottom: 20px; left: 20px; border-right: none; border-top: none; }
+        .ui-corner.bottom-right { bottom: 20px; right: 20px; border-left: none; border-top: none; }
 
-        /* === RESPONSIVE DESIGN === */
-        /* Breakpoints for different screen sizes */
-
-        /* Large screens (1400px and smaller) */
         @media (max-width: 1400px) {
             .waitlist-panel { width: 450px; padding: 50px 30px; }
             .project-slide { padding: 40px 30px; }
         }
 
-        /* Medium-large screens (1200px and smaller) */
         @media (max-width: 1200px) {
             .waitlist-panel { width: 400px; padding: 40px 25px; }
             .project-slide { padding: 30px 25px; }
@@ -522,26 +423,16 @@
             .waitlist-title { font-size: 2.2rem; }
         }
 
-        /* Tablets (1024px and smaller) */
         @media (max-width: 1024px) {
-            /* Stack panels vertically instead of side-by-side */
             .main-container { flex-direction: column; padding-top: 65px; }
             .project-panel { min-height: 50vh; height: auto; }
-            .waitlist-panel { 
-                width: 100%; 
-                padding: 50px 30px; 
-                border-left: none; 
-                border-top: 1px solid rgba(0, 212, 255, 0.3); 
-                min-height: auto; 
-                justify-content: flex-start; 
-            }
+            .waitlist-panel { width: 100%; padding: 50px 30px; border-left: none; border-top: 1px solid rgba(0, 212, 255, 0.3); min-height: auto; justify-content: flex-start; }
             .project-slide { padding: 40px 30px; align-items: center; text-align: center; }
             .project-title { font-size: 2.2rem; }
             .waitlist-title { font-size: 2rem; }
             .nav { padding: 0 20px; }
         }
 
-        /* Mobile devices (768px and smaller) */
         @media (max-width: 768px) {
             .main-container { padding-top: 70px; }
             .project-panel { min-height: 50vh; }
@@ -552,15 +443,11 @@
             .project-description { font-size: 1rem; margin-bottom: 20px; }
             .waitlist-title { font-size: 1.8rem; margin-bottom: 16px; }
             .waitlist-subtitle { font-size: 1rem; margin-bottom: 30px; }
-            .form-group input, .form-group select, .form-group textarea { 
-                padding: 14px 16px; 
-                font-size: 16px; 
-            }
+            .form-group input, .form-group select, .form-group textarea { padding: 14px 16px; font-size: 16px; }
             .submit-btn { padding: 16px 20px; font-size: 14px; }
             .nav { padding: 0 16px; }
             .logo { font-size: 24px; }
             .nav-status { font-size: 12px; }
-            /* Hide custom cursor on mobile */
             .cursor { display: none; }
             body { cursor: auto; }
             .tech-tag { font-size: 11px; padding: 6px 12px; }
@@ -568,7 +455,6 @@
             .nav-dot { width: 10px; height: 10px; }
         }
 
-        /* Small mobile devices (480px and smaller) */
         @media (max-width: 480px) {
             .main-container { padding-top: 65px; }
             .project-panel { min-height: 40vh; }
@@ -580,10 +466,7 @@
             .waitlist-subtitle { font-size: 0.95rem; margin-bottom: 25px; }
             .launch-badge { padding: 10px 20px; font-size: 11px; margin-bottom: 20px; }
             .form-group { margin-bottom: 16px; }
-            .form-group input, .form-group select, .form-group textarea { 
-                padding: 12px 14px; 
-                font-size: 15px; 
-            }
+            .form-group input, .form-group select, .form-group textarea { padding: 12px 14px; font-size: 15px; }
             .submit-btn { padding: 14px 18px; font-size: 13px; }
             .tech-tag { font-size: 10px; padding: 5px 10px; margin-bottom: 8px; }
             .project-tech { gap: 8px; }
@@ -595,7 +478,6 @@
             .ui-corner.top-right, .ui-corner.bottom-right { right: 15px; }
         }
 
-        /* Extra large screens (1600px and larger) */
         @media (min-width: 1600px) {
             .waitlist-panel { width: 550px; padding: 70px 50px; }
             .project-slide { padding: 70px 60px; }
@@ -605,15 +487,11 @@
     </style>
 </head>
 <body>
-    <!-- Custom cursor element that follows mouse movement -->
     <div class="cursor"></div>
 
-    <!-- Fixed header that stays at top during scroll -->
     <header class="header">
         <nav class="nav">
-            <!-- Company logo -->
             <div class="logo">Nexus Tech</div>
-            <!-- Status indicator showing system is online -->
             <div class="nav-status">
                 <div class="status-indicator"></div>
                 System Status: Online
@@ -621,171 +499,103 @@
         </nav>
     </header>
 
-    <!-- Main content container -->
     <div class="main-container">
-        <!-- Decorative corner elements -->
         <div class="ui-corner top-left"></div>
         <div class="ui-corner top-right"></div>
         <div class="ui-corner bottom-left"></div>
         <div class="ui-corner bottom-right"></div>
 
-        <!-- Left panel - Project showcase with carousel -->
         <div class="project-panel">
             <div class="project-carousel">
-                <!-- Progress bar that shows slide timing -->
                 <div class="progress-bar"></div>
                 
-                <!-- Slide 1: NEXORA Tech Environment -->
-                <div class="project-slide active" style="background-image: url('./assets/image1.png');">
+                <div class="project-slide active" style="background-image: url('assets/nexora-red.jpg');">
                     <div class="project-info">
-                        <div class="project-category">Tech Environment</div>
+                        <div class="project-category">Action Adventure Game</div>
                         <h2 class="project-title">NEXORA</h2>
-                        <p class="project-description">Immersive cyberpunk environment with cutting-edge technology interfaces, atmospheric lighting, and futuristic design elements.</p>
+                        <p class="project-description">Immersive action-adventure experience featuring dynamic combat systems, stunning visuals, and an epic storyline that redefines modern gaming.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Unreal Engine</span>
                             <span class="tech-tag">C++</span>
                             <span class="tech-tag">3D Graphics</span>
-                            <span class="tech-tag">Real-time Lighting</span>
+                            <span class="tech-tag">AI Systems</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Slide 2: NEXORA Branding -->
-                <div class="project-slide" style="background-image: url('./assets/image2.png');">
+                <div class="project-slide" style="background-image: url('assets/nexora-combat.jpg');">
                     <div class="project-info">
-                        <div class="project-category">Game Branding</div>
-                        <h2 class="project-title">NEXORA Identity</h2>
-                        <p class="project-description">Strong visual identity with atmospheric environments and character-driven storytelling in a futuristic setting.</p>
+                        <div class="project-category">Combat System</div>
+                        <h2 class="project-title">NEXORA Combat</h2>
+                        <p class="project-description">Advanced tactical combat system with precision archery mechanics, strategic gameplay elements, and immersive character progression.</p>
                         <div class="project-tech">
-                            <span class="tech-tag">Visual Design</span>
-                            <span class="tech-tag">Character Design</span>
-                            <span class="tech-tag">Environment Art</span>
-                            <span class="tech-tag">Atmospheric Rendering</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 3: Development Process -->
-                <div class="project-slide" style="background-image: url('./assets/image3.png');">
-                    <div class="project-info">
-                        <div class="project-category">Development Studio</div>
-                        <h2 class="project-title">Behind the Scenes</h2>
-                        <p class="project-description">Professional development environment with cutting-edge tools and technology for creating next-generation gaming experiences.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Development Tools</span>
-                            <span class="tech-tag">Version Control</span>
-                            <span class="tech-tag">Agile Workflow</span>
-                            <span class="tech-tag">Team Collaboration</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 4: App Development -->
-                <div class="project-slide" style="background-image: url('./assets/image4.png');">
-                    <div class="project-info">
-                        <div class="project-category">Mobile Development</div>
-                        <h2 class="project-title">App Development</h2>
-                        <p class="project-description">Cross-platform mobile application development with modern UI/UX design and seamless user experiences.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">React Native</span>
-                            <span class="tech-tag">Flutter</span>
-                            <span class="tech-tag">UI/UX Design</span>
-                            <span class="tech-tag">Cross-platform</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 5: Game Development -->
-                <div class="project-slide" style="background-image: url('./assets/image5.png');">
-                    <div class="project-info">
-                        <div class="project-category">Game Development</div>
-                        <h2 class="project-title">3D Character Systems</h2>
-                        <p class="project-description">Advanced 3D character modeling, rigging, and animation systems for immersive gaming experiences.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">3D Modeling</span>
-                            <span class="tech-tag">Character Rigging</span>
-                            <span class="tech-tag">Animation Systems</span>
                             <span class="tech-tag">Physics Engine</span>
+                            <span class="tech-tag">Animation</span>
+                            <span class="tech-tag">Multiplayer</span>
+                            <span class="tech-tag">Real-time</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Slide 6: Tech Leadership -->
-                <div class="project-slide" style="background-image: url('./assets/image6.png');">
+                <div class="project-slide" style="background-image: url('assets/invisible-game.jpg');">
                     <div class="project-info">
-                        <div class="project-category">Tech Leadership</div>
-                        <h2 class="project-title">Digital Innovation</h2>
-                        <p class="project-description">Leading digital transformation with cutting-edge technology solutions and innovative development practices.</p>
+                        <div class="project-category">Survival Adventure</div>
+                        <h2 class="project-title">Invisible</h2>
+                        <p class="project-description">Atmospheric survival adventure featuring Meishavernell in a mysterious world. Stealth mechanics, environmental storytelling, and psychological thriller elements.</p>
                         <div class="project-tech">
-                            <span class="tech-tag">Team Leadership</span>
-                            <span class="tech-tag">Digital Strategy</span>
-                            <span class="tech-tag">Innovation</span>
-                            <span class="tech-tag">Technology Consulting</span>
+                            <span class="tech-tag">Unity 3D</span>
+                            <span class="tech-tag">Procedural</span>
+                            <span class="tech-tag">VR Ready</span>
+                            <span class="tech-tag">Atmospheric</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Slide 7: Action Sequence -->
-                <div class="project-slide" style="background-image: url('./assets/image7.png');">
+                <div class="project-slide" style="background-image: linear-gradient(45deg, #fa709a, #fee140, #ff6b6b);">
                     <div class="project-info">
-                        <div class="project-category">Action Adventure</div>
-                        <h2 class="project-title">Dynamic Gameplay</h2>
-                        <p class="project-description">High-intensity action sequences with dynamic environments, realistic physics, and immersive storytelling.</p>
+                        <div class="project-category">Full Portfolio</div>
+                        <h2 class="project-title">More Projects</h2>
+                        <p class="project-description">Explore our complete portfolio of games, web applications, mobile apps, and digital solutions. From concept to launch, we bring visions to life.</p>
                         <div class="project-tech">
-                            <span class="tech-tag">Action Systems</span>
-                            <span class="tech-tag">Physics Simulation</span>
-                            <span class="tech-tag">Dynamic Environments</span>
-                            <span class="tech-tag">Cinematic Design</span>
+                            <span class="tech-tag">Web Development</span>
+                            <span class="tech-tag">Mobile Apps</span>
+                            <span class="tech-tag">Game Development</span>
+                            <span class="tech-tag">Digital Solutions</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Navigation dots for carousel -->
                 <div class="carousel-nav">
                     <div class="nav-dot active" data-slide="0"></div>
                     <div class="nav-dot" data-slide="1"></div>
                     <div class="nav-dot" data-slide="2"></div>
                     <div class="nav-dot" data-slide="3"></div>
-                    <div class="nav-dot" data-slide="4"></div>
-                    <div class="nav-dot" data-slide="5"></div>
-                    <div class="nav-dot" data-slide="6"></div>
                 </div>
             </div>
         </div>
 
-        <!-- Right panel - Contact form -->
         <div class="waitlist-panel">
             <div class="waitlist-content">
-                <!-- Price badge -->
                 <div class="launch-badge">$25 Consultation</div>
-                
-                <!-- Form title and description -->
                 <h1 class="waitlist-title">Request Your Project</h1>
                 <p class="waitlist-subtitle">Ready to bring your vision to life? Tell us about your project and book a strategic 45-minute consultation to discuss your digital solution.</p>
 
-                <!-- Contact form with Netlify integration -->
                 <form class="waitlist-form" name="project-request" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
-                    <!-- Hidden fields for Netlify form handling -->
                     <input type="hidden" name="form-name" value="project-request" />
-                    <!-- Honeypot field to prevent spam (hidden from users) -->
                     <p style="display: none;"><input name="bot-field" /></p>
                     
-                    <!-- Name input -->
                     <div class="form-group">
                         <input type="text" name="name" placeholder="Full Name" required />
                     </div>
                     
-                    <!-- Email input -->
                     <div class="form-group">
                         <input type="email" name="email" placeholder="Email Address" required />
                     </div>
                     
-                    <!-- Company input -->
                     <div class="form-group">
                         <input type="text" name="company" placeholder="Company Name" required />
                     </div>
 
-                    <!-- Project type dropdown -->
                     <div class="form-group">
                         <select name="project-type" required>
                             <option value="">Select Project Type</option>
@@ -798,7 +608,6 @@
                         </select>
                     </div>
 
-                    <!-- Budget range dropdown -->
                     <div class="form-group">
                         <select name="budget" required>
                             <option value="">Project Budget Range</option>
@@ -810,7 +619,6 @@
                         </select>
                     </div>
 
-                    <!-- Timeline dropdown -->
                     <div class="form-group">
                         <select name="timeline" required>
                             <option value="">Project Timeline</option>
@@ -823,25 +631,20 @@
                         </select>
                     </div>
                     
-                    <!-- Project description textarea -->
                     <div class="form-group">
                         <textarea name="project-description" placeholder="Brief description of your project, goals, and any specific requirements..." rows="4" required></textarea>
                     </div>
                     
-                    <!-- Submit button -->
                     <button type="submit" class="submit-btn">Request $25 Consultation</button>
                 </form>
 
-                <!-- Success message (hidden by default, shown after form submission) -->
                 <div class="success-message" id="successMessage">
                     <h3>Project Request Received! 🚀</h3>
                     <p style="margin-bottom: 24px;">Thank you for your interest! We've received your project details and will review them shortly.</p>
                     
-                    <!-- Next steps section -->
                     <div style="background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3); border-radius: 8px; padding: 20px; margin-bottom: 24px;">
                         <h4 style="color: #00d4ff; margin-bottom: 12px;">Next Step: Book Your Strategy Session ($25)</h4>
                         <p style="margin-bottom: 16px; color: #c9d1d9;">Schedule a focused 45-minute consultation where we'll discuss your project in detail, provide expert recommendations, and create a custom proposal. Investment: $25 (applied toward your project if you proceed).</p>
-                        <!-- Calendly booking link -->
                         <a href="https://calendly.com/nexustechdigitalsolutions/45min?hide_event_type_details=1" 
                            target="_blank" 
                            class="calendly-btn"
@@ -853,7 +656,6 @@
                     <p style="font-size: 14px; color: #8b949e;">We'll also send you a confirmation email with next steps and preparation materials for your consultation.</p>
                 </div>
 
-                <!-- Feature list -->
                 <ul class="waitlist-features">
                     <li>45-minute strategy consultation ($25)</li>
                     <li>Custom project proposal & timeline</li>
@@ -867,44 +669,30 @@
     </div>
 
     <script>
-        // === JAVASCRIPT FUNCTIONALITY === //
+        const cursor = document.querySelector('.cursor');
+        const slides = document.querySelectorAll('.project-slide');
+        const dots = document.querySelectorAll('.nav-dot');
+        const progressBar = document.querySelector('.progress-bar');
+        const form = document.querySelector('.waitlist-form');
+        const successMessage = document.getElementById('successMessage');
         
-        // Get references to important DOM elements
-        const cursor = document.querySelector('.cursor'); // Custom cursor element
-        const slides = document.querySelectorAll('.project-slide'); // All carousel slides
-        const dots = document.querySelectorAll('.nav-dot'); // Navigation dots
-        const progressBar = document.querySelector('.progress-bar'); // Progress bar
-        const form = document.querySelector('.waitlist-form'); // Contact form
-        const successMessage = document.getElementById('successMessage'); // Success message
-        
-        // Variables for carousel functionality
-        let currentSlide = 0; // Current active slide index
-        let slideInterval; // Reference to setInterval for auto-advancement
-        let isTransitioning = false; // Prevents multiple transitions at once
+        let currentSlide = 0;
+        let slideInterval;
+        let isTransitioning = false;
 
-        // === CUSTOM CURSOR FUNCTIONALITY === //
-        // Update cursor position based on mouse movement
         document.addEventListener('mousemove', (e) => {
             if (cursor) {
-                cursor.style.left = e.clientX + 'px'; // X position
-                cursor.style.top = e.clientY + 'px'; // Y position
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
             }
         });
 
-        // Add hover effect to interactive elements
         document.querySelectorAll('button, .nav-dot, input, select, textarea').forEach(el => {
             el.addEventListener('mouseenter', () => cursor && cursor.classList.add('hover'));
             el.addEventListener('mouseleave', () => cursor && cursor.classList.remove('hover'));
         });
 
-        // === CAROUSEL FUNCTIONALITY === //
-        
-        /**
-         * Shows a specific slide in the carousel
-         * @param {number} index - Index of slide to show
-         */
         function showSlide(index) {
-            // Prevent multiple transitions and ensure slides exist
             if (isTransitioning || !slides.length) return;
             isTransitioning = true;
             
@@ -916,16 +704,15 @@
             if (slides[index]) slides[index].classList.add('active');
             if (dots[index]) dots[index].classList.add('active');
             
-            // Reset and start progress bar animation
+            // Reset and start progress bar
             if (progressBar) {
-                progressBar.style.width = '0%'; // Reset to 0
-                progressBar.style.transition = 'none'; // Remove transition temporarily
-                progressBar.offsetHeight; // Force browser to recalculate styles (reflow)
+                progressBar.style.width = '0%';
+                progressBar.style.transition = 'none';
+                progressBar.offsetHeight; // Force reflow
                 
-                // Start progress bar animation after short delay
                 setTimeout(() => {
                     progressBar.style.transition = 'width 5s linear';
-                    progressBar.style.width = '100%'; // Animate to full width over 5 seconds
+                    progressBar.style.width = '100%';
                     isTransitioning = false;
                 }, 50);
             } else {
@@ -933,24 +720,15 @@
             }
         }
 
-        /**
-         * Advances to the next slide in the carousel
-         */
         function nextSlide() {
             if (slides.length === 0) return;
-            // Loop back to first slide if at the end
             currentSlide = (currentSlide + 1) % slides.length;
             showSlide(currentSlide);
         }
 
-        /**
-         * Starts the automatic slideshow
-         */
         function startSlideshow() {
             if (slides.length === 0) return;
-            // Clear any existing interval
             if (slideInterval) clearInterval(slideInterval);
-            // Start new interval - advance slide every 5 seconds
             slideInterval = setInterval(nextSlide, 5000);
             
             // Start progress bar immediately
@@ -962,119 +740,85 @@
             }, 100);
         }
 
-        /**
-         * Stops the automatic slideshow
-         */
         function stopSlideshow() {
             if (slideInterval) {
                 clearInterval(slideInterval);
                 slideInterval = null;
             }
-            // Reset progress bar
             if (progressBar) {
                 progressBar.style.width = '0%';
                 progressBar.style.transition = 'none';
             }
         }
 
-        /**
-         * Resets the slideshow timer (useful when user manually navigates)
-         */
         function resetSlideshow() {
             stopSlideshow();
-            setTimeout(startSlideshow, 1000); // Restart after 1 second
+            setTimeout(startSlideshow, 1000);
         }
 
-        /**
-         * Initializes the slideshow on page load
-         */
+        // Initialize slideshow
         function initSlideshow() {
             if (slides.length > 0) {
-                console.log('Initializing slideshow with', slides.length, 'slides');
+                // Ensure first slide is active
+                slides[0].classList.add('active');
+                if (dots.length > 0) dots[0].classList.add('active');
                 
-                // Reset all slides
-                slides.forEach((slide, index) => {
-                    slide.classList.remove('active');
-                    if (index === 0) slide.classList.add('active');
-                });
-                
-                // Reset all dots
-                dots.forEach((dot, index) => {
-                    dot.classList.remove('active');
-                    if (index === 0) dot.classList.add('active');
-                });
-                
-                // Start the slideshow after a short delay
+                // Start the slideshow
                 setTimeout(() => {
                     startSlideshow();
-                    console.log('Slideshow started');
-                }, 1000);
-            } else {
-                console.log('No slides found');
+                }, 500);
+                
+                console.log('Slideshow initialized with', slides.length, 'slides');
             }
         }
 
-        // === EVENT LISTENERS === //
-        
-        // Navigation dot click handlers
         dots.forEach((dot, index) => {
             dot.addEventListener('click', () => {
                 if (currentSlide !== index) {
                     currentSlide = index;
                     showSlide(currentSlide);
-                    resetSlideshow(); // Reset timer when user manually navigates
+                    resetSlideshow();
                 }
             });
         });
 
-        // Pause slideshow when hovering over project panel
         const projectPanel = document.querySelector('.project-panel');
         if (projectPanel) {
             projectPanel.addEventListener('mouseenter', stopSlideshow);
             projectPanel.addEventListener('mouseleave', startSlideshow);
         }
 
-        // Keyboard navigation for carousel
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') {
-                e.preventDefault(); // Prevent default browser behavior
-                // Go to previous slide (or last slide if at beginning)
+                e.preventDefault();
                 currentSlide = currentSlide > 0 ? currentSlide - 1 : slides.length - 1;
                 showSlide(currentSlide);
                 resetSlideshow();
             } else if (e.key === 'ArrowRight') {
                 e.preventDefault();
-                // Go to next slide
                 nextSlide();
                 resetSlideshow();
             }
         });
 
-        // === FORM SUBMISSION HANDLING === //
-        
-        // Handle form submission
         form.addEventListener('submit', async (e) => {
-            e.preventDefault(); // Prevent default form submission
+            e.preventDefault();
             
-            // Get form data
             const formData = new FormData(form);
-            const data = Object.fromEntries(formData); // Convert to plain object
+            const data = Object.fromEntries(formData);
             const submitBtn = form.querySelector('.submit-btn');
             const originalText = submitBtn.textContent;
             
             try {
-                // Update button to show loading state
                 submitBtn.textContent = 'Submitting...';
                 submitBtn.disabled = true;
                 
-                // Submit form to Netlify (using their form handling)
                 await fetch('/', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: new URLSearchParams(formData).toString()
                 });
                 
-                // Optional: Additional database logging (if function exists)
                 if (window.dbFunctions) {
                     await window.dbFunctions.addContactSubmission({
                         ...data,
@@ -1084,19 +828,15 @@
                     });
                 }
                 
-                // Show success message and hide form
                 form.style.display = 'none';
                 successMessage.style.display = 'block';
-                // Smooth scroll to success message
                 successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 
             } catch (error) {
-                // Handle submission errors
                 console.error('Form submission error:', error);
                 submitBtn.textContent = 'Try Again';
                 alert('Something went wrong. Please try again or contact us directly at info@nexustechdigitalsolutions.net');
             } finally {
-                // Reset button if form is still visible
                 if (form.style.display !== 'none') {
                     submitBtn.textContent = originalText;
                     submitBtn.disabled = false;
@@ -1104,39 +844,28 @@
             }
         });
 
-        // === RESPONSIVE CURSOR HANDLING === //
-        
-        /**
-         * Shows/hides custom cursor based on screen size
-         */
         function initializeCursor() {
             if (window.innerWidth <= 768) {
-                // Hide custom cursor on mobile devices
                 if (cursor) cursor.style.display = 'none';
                 document.body.style.cursor = 'auto';
             } else {
-                // Show custom cursor on desktop
                 if (cursor) cursor.style.display = 'block';
                 document.body.style.cursor = 'none';
             }
         }
 
-        // === INITIALIZATION === //
-        
-        // Initialize everything when page loads
         if (document.readyState === 'loading') {
-            // Page is still loading - wait for DOM content to load
             document.addEventListener('DOMContentLoaded', () => {
-                initSlideshow();
+                showSlide(0);
+                setTimeout(startSlideshow, 500);
                 initializeCursor();
             });
         } else {
-            // Page already loaded - initialize immediately
-            initSlideshow();
+            showSlide(0);
+            setTimeout(startSlideshow, 500);
             initializeCursor();
         }
 
-        // Re-initialize cursor on window resize
         window.addEventListener('resize', initializeCursor);
     </script>
 </body>
