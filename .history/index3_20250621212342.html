@@ -92,10 +92,11 @@
 
         /* Main Container */
         .main-container {
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
             position: relative;
-            padding-top: 80px; /* Adjusted for header height */
+            overflow: hidden;
+            padding-top: 90px;
         }
 
         /* Left Panel - Project Showcase */
@@ -103,7 +104,7 @@
             flex: 1;
             position: relative;
             background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
-            min-height: calc(100vh - 80px); /* Account for header */
+            overflow: hidden;
         }
 
         .project-carousel {
@@ -202,13 +203,12 @@
             background: linear-gradient(135deg, #000000 0%, #0d1117 100%);
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Changed from center to flex-start */
+            justify-content: center;
             align-items: center;
-            padding: 40px 40px 20px 40px; /* Reduced top padding, added bottom padding */
+            padding: 60px 40px;
             position: relative;
             border-left: 1px solid rgba(0, 212, 255, 0.3);
-            min-height: calc(100vh - 80px); /* Account for header */
-            overflow-y: auto; /* Allow scrolling when content overflows */
+            overflow-y: auto;
         }
 
         .waitlist-panel::before {
@@ -229,7 +229,6 @@
             z-index: 2;
             text-align: center;
             width: 100%;
-            padding-top: 20px; /* Add top padding for better spacing */
         }
 
         .launch-badge {
@@ -402,8 +401,9 @@
             border-radius: 12px;
             padding: 30px;
             margin-top: 20px;
+            max-height: 70vh;
+            overflow-y: auto;
             text-align: left;
-            width: 100%;
         }
 
         .service-item {
@@ -678,7 +678,7 @@
                 <div class="progress-bar"></div>
                 
                 <!-- Slide 1 - Use your existing images OR fallback gradients -->
-                <div class="project-slide active" style="background-image: url('assets/nexora-red.jpg'), linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <div class="project-slide active" style="background-image: url('assets/image1.png'), linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
                     <div class="project-info">
                         <div class="project-category">Action Adventure Game</div>
                         <h2 class="project-title">NEXORA</h2>
@@ -696,7 +696,7 @@
                 </div>
 
                 <!-- Slide 2 -->
-                <div class="project-slide" style="background-image: url('assets/nexora-combat.jpg'), linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                <div class="project-slide" style="background-image: url('assets/image2.PNG'), linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
                     <div class="project-info">
                         <div class="project-category">Combat System</div>
                         <h2 class="project-title">NEXORA Combat</h2>
@@ -714,7 +714,7 @@
                 </div>
 
                 <!-- Slide 3 -->
-                <div class="project-slide" style="background-image: url('assets/invisible-game.jpg'), linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                <div class="project-slide" style="background-image: url('assets/image3.PNG'), linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
                     <div class="project-info">
                         <div class="project-category">Survival Adventure</div>
                         <h2 class="project-title">Invisible</h2>
@@ -732,7 +732,7 @@
                 </div>
 
                 <!-- Slide 4 -->
-                <div class="project-slide" style="background-image: linear-gradient(45deg, #fa709a, #fee140, #ff6b6b);">
+                <div class="project-slide" style="background-image: url('assets/image4.PNG'), linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
                     <div class="project-info">
                         <div class="project-category">Full Portfolio</div>
                         <h2 class="project-title">More Projects</h2>
