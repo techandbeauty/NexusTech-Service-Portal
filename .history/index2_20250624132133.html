@@ -611,7 +611,7 @@
             </ul>
             <div class="nav-auth">
                 <a href="dashboard.html" class="auth-link" id="dashboardLink" style="display: none;">Dashboard</a>
-                <a href="login.html" class="cta-button" id="loginButton">Client Login</a>
+                <a href="dashboard.html" class="cta-button" id="loginButton">Client Login</a>
             </div>
         </div>
     </nav>
@@ -844,16 +844,19 @@
 
         // Simple auth state management for homepage
         document.addEventListener('DOMContentLoaded', () => {
-            // Check if user is signed in (this would integrate with Firebase)
-            // For now, this is just placeholder functionality
-            const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
-            
-            if (isLoggedIn) {
-                document.getElementById('dashboardLink').style.display = 'block';
-                document.getElementById('loginButton').textContent = 'Dashboard';
-                document.getElementById('loginButton').href = 'dashboard.html';
-            }
+            // Try to detect if user is signed in (simplified)
+            setTimeout(() => {
+                if (window.authFunctions && window.authFunctions.getCurrentUser && window.authFunctions.getCurrentUser()) {
+                    const user = window.authFunctions.getCurrentUser();
+                    document.getElementById('dashboardLink').style.display = 'block';
+                    document.getElementById('loginButton').textContent = 'Dashboard';
+                    document.getElementById('loginButton').href = 'dashboard.html';
+                }
+            }, 1000);
         });
     </script>
+
+    <!-- Firebase SDK (optional for homepage auth state) -->
+    <script type="module" src="js/firebase-config.js"></script>
 </body>
 </html>
