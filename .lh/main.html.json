@@ -3,11 +3,27 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 4,
             "patches": [
                 {
                     "date": 1750858484464,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1755372014874,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -610,9 +610,9 @@\n                 <li><a href=\"connect.html\">Connect</a></li>\n             </ul>\n             <div class=\"nav-auth\">\n                 <a href=\"dashboard.html\" class=\"auth-link\" id=\"dashboardLink\" style=\"display: none;\">Dashboard</a>\n-                <a href=\"login.html\" class=\"cta-button\" id=\"loginButton\">Client Login</a>\n+                <a href=\"coming-soon.\" class=\"cta-button\" id=\"loginButton\">Client Login</a>\n             </div>\n         </div>\n     </nav>\n \n"
+                },
+                {
+                    "date": 1755372084938,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -609,9 +609,9 @@\n                 <li><a href=\"portfolio.html\">Portfolio</a></li>\n                 <li><a href=\"connect.html\">Connect</a></li>\n             </ul>\n             <div class=\"nav-auth\">\n-                <a href=\"dashboard.html\" class=\"auth-link\" id=\"dashboardLink\" style=\"display: none;\">Dashboard</a>\n+                <a href=\" class=\"auth-link\" id=\"dashboardLink\" style=\"display: none;\">Dashboard</a>\n                 <a href=\"coming-soon.\" class=\"cta-button\" id=\"loginButton\">Client Login</a>\n             </div>\n         </div>\n     </nav>\n"
+                },
+                {
+                    "date": 1755372098811,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -609,9 +609,9 @@\n                 <li><a href=\"portfolio.html\">Portfolio</a></li>\n                 <li><a href=\"connect.html\">Connect</a></li>\n             </ul>\n             <div class=\"nav-auth\">\n-                <a href=\" class=\"auth-link\" id=\"dashboardLink\" style=\"display: none;\">Dashboard</a>\n+                <a href=\"index. class=\"auth-link\" id=\"dashboardLink\" style=\"display: none;\">Dashboard</a>\n                 <a href=\"coming-soon.\" class=\"cta-button\" id=\"loginButton\">Client Login</a>\n             </div>\n         </div>\n     </nav>\n"
+                },
+                {
+                    "date": 1755372129377,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -609,10 +609,10 @@\n                 <li><a href=\"portfolio.html\">Portfolio</a></li>\n                 <li><a href=\"connect.html\">Connect</a></li>\n             </ul>\n             <div class=\"nav-auth\">\n-                <a href=\"index. class=\"auth-link\" id=\"dashboardLink\" style=\"display: none;\">Dashboard</a>\n-                <a href=\"coming-soon.\" class=\"cta-button\" id=\"loginButton\">Client Login</a>\n+                <a href=\"index.html\"auth-link\" id=\"dashboardLink\" style=\"display: none;\">Dashboard</a>\n+                <a href=\"coming-soon.html\" class=\"cta-button\" id=\"loginButton\">Client Login</a>\n             </div>\n         </div>\n     </nav>\n \n"
                 }
             ],
             "date": 1750858484464,
