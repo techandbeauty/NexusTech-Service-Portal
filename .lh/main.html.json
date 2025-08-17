@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 4,
+            "activePatchIndex": 7,
             "patches": [
                 {
                     "date": 1750858484464,
@@ -24,6 +24,18 @@
                 {
                     "date": 1755372129377,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -609,10 +609,10 @@\n                 <li><a href=\"portfolio.html\">Portfolio</a></li>\n                 <li><a href=\"connect.html\">Connect</a></li>\n             </ul>\n             <div class=\"nav-auth\">\n-                <a href=\"index. class=\"auth-link\" id=\"dashboardLink\" style=\"display: none;\">Dashboard</a>\n-                <a href=\"coming-soon.\" class=\"cta-button\" id=\"loginButton\">Client Login</a>\n+                <a href=\"index.html\"auth-link\" id=\"dashboardLink\" style=\"display: none;\">Dashboard</a>\n+                <a href=\"coming-soon.html\" class=\"cta-button\" id=\"loginButton\">Client Login</a>\n             </div>\n         </div>\n     </nav>\n \n"
+                },
+                {
+                    "date": 1755397046791,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -624,9 +624,9 @@\n             <div class=\"hero-subtitle\">Next-Level Digital Experiences</div>\n             <p>Custom-built apps, websites, games, and digital solutions for forward-thinking brands ready to dominate their markets.</p>\n             <div class=\"hero-buttons\">\n                 <a href=\"connect.html\" class=\"btn-primary\">Book Discovery Call</a>\n-                <a href=\"services.html\" class=\"btn-secondary\">Explore Services</a>\n+                <a href=\"coming\" class=\"btn-secondary\">Explore Services</a>\n             </div>\n         </div>\n     </section>\n \n"
+                },
+                {
+                    "date": 1755397053266,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -624,9 +624,9 @@\n             <div class=\"hero-subtitle\">Next-Level Digital Experiences</div>\n             <p>Custom-built apps, websites, games, and digital solutions for forward-thinking brands ready to dominate their markets.</p>\n             <div class=\"hero-buttons\">\n                 <a href=\"connect.html\" class=\"btn-primary\">Book Discovery Call</a>\n-                <a href=\"coming\" class=\"btn-secondary\">Explore Services</a>\n+                <a href=\"coming-soon.html\" class=\"btn-secondary\">Explore Services</a>\n             </div>\n         </div>\n     </section>\n \n"
+                },
+                {
+                    "date": 1755398646564,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -621,9 +621,9 @@\n         <div class=\"hero-content\">\n             <div class=\"hero-badge\">Custom Digital Solutions</div>\n             <h1>Precision in Every Pixel</h1>\n             <div class=\"hero-subtitle\">Next-Level Digital Experiences</div>\n-            <p>Custom-built apps, websites, games, and digital solutions for forward-thinking brands ready to dominate their markets.</p>\n+            <p>Custom-built apps, websites, gMmjames, and digital solutions for forward-thinking brands ready to dominate their markets.</p>\n             <div class=\"hero-buttons\">\n                 <a href=\"connect.html\" class=\"btn-primary\">Book Discovery Call</a>\n                 <a href=\"coming-soon.html\" class=\"btn-secondary\">Explore Services</a>\n             </div>\n"
                 }
             ],
             "date": 1750858484464,
