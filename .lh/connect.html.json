@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 16,
+            "activePatchIndex": 21,
             "patches": [
                 {
                     "date": 1749986670665,
@@ -72,6 +72,26 @@
                 {
                     "date": 1755399823317,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -575,9 +575,9 @@\n                     <div class=\"contact-method\">\n                         <div class=\"contact-icon\">📞</div>\n                         <div class=\"contact-details\">\n                             <h4>Call Us</h4>\n-                            <p><a href=\"tel:+15555555555\">+1 (703) 313-1631</a></p>\n+                            <p><a href=\"tel:+15555555555\">+1 (703)-313-1631</a></p>\n                         </div>\n                     </div>\n \n                     <div class=\"contact-method\">\n"
+                },
+                {
+                    "date": 1755953333173,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -757,9 +757,9 @@\n             </div>\n \n             <div class=\"footer-section\">\n                 <h4>Connect</h4>\n-                <p>hello@nexustech.dev</p>\n+                <p>info</p>\n                 <p>+1 (555) NEXUS-TECH</p>\n                 <p><a href=\"connect.html\">Book Discovery Call</a></p>\n                 <p><a href=\"careers.html\">Join Our Team</a></p>\n             </div>\n"
+                },
+                {
+                    "date": 1755953340899,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -757,9 +757,9 @@\n             </div>\n \n             <div class=\"footer-section\">\n                 <h4>Connect</h4>\n-                <p>info</p>\n+                <p>info@nexustechdigitalsolutions.net</p>\n                 <p>+1 (555) NEXUS-TECH</p>\n                 <p><a href=\"connect.html\">Book Discovery Call</a></p>\n                 <p><a href=\"careers.html\">Join Our Team</a></p>\n             </div>\n"
+                },
+                {
+                    "date": 1755953348038,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -758,9 +758,9 @@\n \n             <div class=\"footer-section\">\n                 <h4>Connect</h4>\n                 <p>info@nexustechdigitalsolutions.net</p>\n-                <p>+1 (555) NEXUS-TECH</p>\n+                <p>+1 (703</p>\n                 <p><a href=\"connect.html\">Book Discovery Call</a></p>\n                 <p><a href=\"careers.html\">Join Our Team</a></p>\n             </div>\n         </div>\n"
+                },
+                {
+                    "date": 1755953354388,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -758,9 +758,9 @@\n \n             <div class=\"footer-section\">\n                 <h4>Connect</h4>\n                 <p>info@nexustechdigitalsolutions.net</p>\n-                <p>+1 (703</p>\n+                <p>+1 (703)313-1631</p>\n                 <p><a href=\"connect.html\">Book Discovery Call</a></p>\n                 <p><a href=\"careers.html\">Join Our Team</a></p>\n             </div>\n         </div>\n"
+                },
+                {
+                    "date": 1755953367384,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -758,16 +758,16 @@\n \n             <div class=\"footer-section\">\n                 <h4>Connect</h4>\n                 <p>info@nexustechdigitalsolutions.net</p>\n-                <p>+1 (703)313-1631</p>\n+                <p>+1 (703) 313-1631</p>\n                 <p><a href=\"connect.html\">Book Discovery Call</a></p>\n                 <p><a href=\"careers.html\">Join Our Team</a></p>\n             </div>\n         </div>\n \n         <div class=\"footer-bottom\">\n-            <p>&copy; 2025 Nexus Tech Digital Solutions. All rights reserved. | <a href=\"privacy.html\">Privacy Policy</a> | <a href=\"terms.html\">Terms of Service</a></p>\n+            <p>&copy; 2026 Nexus Tech Digital Solutions. All rights reserved. | <a href=\"privacy.html\">Privacy Policy</a> | <a href=\"terms.html\">Terms of Service</a></p>\n         </div>\n     </footer>\n \n     <script>\n"
                 }
             ],
             "date": 1749986670665,
