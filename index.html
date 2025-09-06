@@ -12,253 +12,130 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #000000;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
             color: #ffffff;
+            background-color: #0d1117;
             overflow-x: hidden;
-            cursor: none;
         }
 
-        /* Custom Cursor */
-        .cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            background: linear-gradient(45deg, #00d4ff, #0066ff);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease;
-            mix-blend-mode: difference;
-        }
-
-        .cursor.hover {
-            transform: scale(2);
-        }
-
-        /* PlayStation Style Header */
-        .header {
+        /* Navigation */
+        .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(13, 17, 23, 0.95);
             backdrop-filter: blur(20px);
             z-index: 1000;
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+            padding: 16px 0;
+            border-bottom: 1px solid #21262d;
+            transition: all 0.3s ease;
         }
 
-        .nav {
+        .nav-container {
             max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 30px;
+            padding: 0 24px;
         }
 
         .logo {
             font-size: 28px;
             font-weight: 900;
             color: #00d4ff;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
             text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .logo:hover {
-            color: #ffffff;
-            text-shadow: 0 0 30px rgba(0, 212, 255, 0.8);
-            transform: scale(1.05);
-        }
-
-        .nav-status {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            font-size: 14px;
-            color: #8b949e;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .nav-links {
             display: flex;
-            gap: 24px;
-            align-items: center;
+            list-style: none;
+            gap: 48px;
         }
 
-        .nav-link {
+        .nav-links a {
+            text-decoration: none;
+            color: #c9d1d9;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00d4ff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-auth {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .auth-link {
             color: #c9d1d9;
             text-decoration: none;
             font-weight: 500;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            padding: 8px 16px;
-            border-radius: 4px;
+            font-size: 16px;
+            transition: color 0.3s ease;
         }
 
-        .nav-link:hover {
+        .auth-link:hover {
             color: #00d4ff;
-            background: rgba(0, 212, 255, 0.1);
         }
 
-        .status-indicator {
-            width: 12px;
-            height: 12px;
-            background: #00d4ff;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-            box-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
-        }
-
-        /* Main Container */
-        .main-container {
-            min-height: 100vh;
-            display: flex;
-            position: relative;
-            padding-top: 80px;
-        }
-
-        /* Left Panel - Project Showcase */
-        .project-panel {
-            flex: 1;
-            position: relative;
-            background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
-            min-height: calc(100vh - 80px);
-        }
-
-        .project-carousel {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* FIXED: Better mobile image handling */
-        .project-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            display: flex;
-            align-items: flex-end;
-            padding: 60px;
-            /* Removed background properties - will be set inline */
-        }
-
-        .project-slide.active {
-            opacity: 1;
-        }
-
-        /* FIXED: Background image for better mobile support */
-        .project-slide-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            /* Force hardware acceleration on mobile */
-            transform: translateZ(0);
-            -webkit-transform: translateZ(0);
-            will-change: transform;
-        }
-
-        .project-slide::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(
-                135deg,
-                rgba(13, 17, 23, 0.7) 0%,
-                rgba(0, 102, 255, 0.3) 50%,
-                rgba(0, 212, 255, 0.2) 100%
-            );
-            z-index: 1;
-        }
-
-        .project-info {
-            position: relative;
-            z-index: 2;
-            max-width: 500px;
-        }
-
-        .project-category {
-            color: #00d4ff;
-            font-size: 14px;
+        .cta-button {
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 6px;
+            text-decoration: none;
             font-weight: 700;
+            font-size: 16px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
         }
 
-        .project-title {
-            font-size: 3rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.8);
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 102, 255, 0.4);
         }
 
-        .project-description {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 30px;
-        }
-
-        .project-tech {
+        /* Hero Section */
+        .hero {
+            height: 100vh;
             display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .tech-tag {
-            background: rgba(0, 212, 255, 0.2);
-            border: 1px solid rgba(0, 212, 255, 0.5);
-            color: #00d4ff;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Right Panel - Waitlist */
-        .waitlist-panel {
-            width: 500px;
-            background: linear-gradient(135deg, #000000 0%, #0d1117 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
             align-items: center;
-            padding: 40px 40px 20px 40px;
+            justify-content: center;
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0066ff 100%);
+            color: white;
+            text-align: center;
             position: relative;
-            border-left: 1px solid rgba(0, 212, 255, 0.3);
-            min-height: calc(100vh - 80px);
-            overflow-y: auto;
+            overflow: hidden;
         }
 
-        .waitlist-panel::before {
+        .hero::before {
             content: '';
             position: absolute;
             top: 0;
@@ -266,731 +143,717 @@
             right: 0;
             bottom: 0;
             background: 
-                radial-gradient(circle at 50% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(0, 102, 255, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 20% 80%, #00d4ff 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, #0066ff 0%, transparent 50%);
+            opacity: 0.1;
             z-index: 1;
         }
 
-        .waitlist-content {
-            position: relative;
+        .hero-content {
+            max-width: 900px;
+            padding: 0 24px;
             z-index: 2;
-            text-align: center;
-            width: 100%;
-            padding-top: 20px;
+            position: relative;
         }
 
-        .launch-badge {
-            background: linear-gradient(45deg, #0066ff, #00d4ff);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 25px;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-            display: inline-block;
-            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
-        }
-
-        .waitlist-title {
-            font-size: 2.8rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #ffffff, #00d4ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .waitlist-subtitle {
-            font-size: 1.2rem;
-            color: #8b949e;
-            margin-bottom: 40px;
-            line-height: 1.6;
-        }
-
-        .waitlist-form {
-            width: 100%;
-            margin-bottom: 40px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-input {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 8px;
-            padding: 16px 20px;
-            color: white;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: #00d4ff;
-            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2);
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .form-input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .form-input option {
-            background: #161b22;
-            color: white;
-        }
-
-        .submit-btn {
-            width: 100%;
-            background: linear-gradient(45deg, #0066ff, #00d4ff);
-            border: none;
-            border-radius: 8px;
-            padding: 18px 24px;
-            color: white;
-            font-size: 16px;
+        .hero-badge {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+            margin-bottom: 32px;
+            display: inline-block;
+            animation: fadeInUp 1s ease;
         }
 
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(0, 102, 255, 0.4);
+        .hero h1 {
+            font-size: clamp(52px, 8vw, 84px);
+            font-weight: 900;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            animation: fadeInUp 1s ease 0.2s both;
+            text-transform: uppercase;
+            letter-spacing: -2px;
         }
 
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-
-        .waitlist-features {
-            list-style: none;
-            text-align: left;
-        }
-
-        .waitlist-features li {
-            padding: 8px 0;
-            color: #8b949e;
-            position: relative;
-            padding-left: 30px;
-        }
-
-        .waitlist-features li::before {
-            content: '▶';
-            position: absolute;
-            left: 0;
+        .hero-subtitle {
+            font-size: clamp(20px, 3vw, 28px);
+            margin-bottom: 16px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.4s both;
+            font-weight: 700;
             color: #00d4ff;
-            font-size: 12px;
         }
 
-        /* Navigation Dots */
-        .carousel-nav {
-            position: absolute;
-            bottom: 30px;
-            right: 30px;
+        .hero p {
+            font-size: clamp(18px, 2.5vw, 22px);
+            margin-bottom: 48px;
+            opacity: 0.8;
+            animation: fadeInUp 1s ease 0.6s both;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
             display: flex;
-            gap: 15px;
-            z-index: 3;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.8s both;
         }
 
-        .nav-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            cursor: pointer;
+        .btn-primary {
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0, 102, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #00d4ff;
+            padding: 20px 40px;
+            border: 2px solid #00d4ff;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             transition: all 0.3s ease;
         }
 
-        .nav-dot.active {
+        .btn-secondary:hover {
             background: #00d4ff;
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.8);
-            transform: scale(1.2);
+            color: #0d1117;
+            transform: translateY(-3px);
         }
 
-        /* Progress Bar */
-        .progress-bar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 3px;
-            background: #00d4ff;
-            transition: width 5s linear;
-            z-index: 3;
+        /* Services Preview Section */
+        .services-preview {
+            padding: 120px 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #0d1117;
         }
 
-        /* Success Message */
-        .success-message {
-            display: none;
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            color: #22c55e;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-badge {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+
+        .section-header h2 {
+            font-size: clamp(48px, 6vw, 64px);
+            font-weight: 900;
+            margin-bottom: 24px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .section-header p {
+            font-size: 20px;
+            color: #8b949e;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #161b22 0%, #21262d 100%);
+            padding: 40px 32px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #30363d;
             text-align: center;
         }
 
-        /* Responsive Design */
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #0066ff, #00d4ff);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.2);
+            border-color: #00d4ff;
+        }
+
+        .service-icon {
+            font-size: 48px;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .service-card p {
+            color: #8b949e;
+            line-height: 1.6;
+            font-size: 15px;
+            margin-bottom: 24px;
+        }
+
+        .explore-all {
+            text-align: center;
+        }
+
+        .explore-btn {
+            background: linear-gradient(135deg, #0066ff, #00d4ff);
+            color: white;
+            padding: 18px 36px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .explore-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.4);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 120px 24px;
+            background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+        }
+
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 48px;
+            margin-top: 60px;
+        }
+
+        .stat-item {
+            padding: 40px 20px;
+        }
+
+        .stat-number {
+            font-size: 56px;
+            font-weight: 900;
+            color: #00d4ff;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            color: #8b949e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
+            color: white;
+            padding: 120px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(48px, 6vw, 64px);
+            font-weight: 900;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .cta-section p {
+            font-size: 22px;
+            margin-bottom: 48px;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 20px 48px;
+            border: 2px solid white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            background: white;
+            color: #0066ff;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0d1117;
+            color: white;
+            padding: 80px 24px 40px;
+            border-top: 1px solid #21262d;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 48px;
+        }
+
+        .footer-section h4 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            color: #00d4ff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #8b949e;
+            text-decoration: none;
+            line-height: 2;
+            transition: color 0.3s ease;
+            font-size: 16px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .footer-section a:hover {
+            color: #00d4ff;
+        }
+
+        .footer-bottom {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid #21262d;
+            text-align: center;
+            color: #8b949e;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            .main-container {
-                flex-direction: column;
-                min-height: 100vh;
-                padding-top: 70px;
-            }
-
-            .project-panel {
-                min-height: 50vh;
-            }
-
-            .waitlist-panel {
-                width: 100%;
-                padding: 30px 20px 20px 20px;
-                border-left: none;
-                border-top: 1px solid rgba(0, 212, 255, 0.3);
-                min-height: auto;
-                justify-content: flex-start;
-            }
-
-            .project-slide {
-                padding: 30px 20px;
-            }
-
-            .project-title {
-                font-size: 2rem;
-            }
-
-            .waitlist-title {
-                font-size: 2rem;
-            }
-
-            .nav {
-                padding: 0 20px;
-            }
-
             .nav-links {
                 display: none;
             }
 
-            .cursor {
-                display: none;
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
             }
 
-            body {
-                cursor: auto;
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-container {
+                padding: 0 16px;
+            }
+
+            .services-preview {
+                padding: 80px 16px;
+            }
+
+            .stats {
+                padding: 80px 16px;
+            }
+
+            .cta-section {
+                padding: 80px 16px;
+            }
+
+            .footer {
+                padding: 60px 16px 40px;
+            }
+
+            .nav-auth {
+                flex-direction: column;
+                gap: 8px;
             }
         }
 
-        /* Extra small screens */
         @media (max-width: 480px) {
-            .main-container {
-                padding-top: 65px;
+            .stats-grid {
+                grid-template-columns: 1fr;
             }
-
-            .waitlist-panel {
-                padding: 20px 15px 15px 15px;
-            }
-
-            .project-slide {
-                padding: 20px 15px;
-            }
-
-            .project-title {
-                font-size: 1.5rem;
-                margin-bottom: 12px;
-            }
-
-            .waitlist-title {
-                font-size: 1.6rem;
-                margin-bottom: 12px;
-            }
-
-            .waitlist-subtitle {
-                font-size: 1rem;
-                margin-bottom: 25px;
-            }
-
-            .launch-badge {
-                padding: 8px 16px;
-                font-size: 11px;
-                margin-bottom: 15px;
-            }
-
-            .form-group {
-                margin-bottom: 15px;
-            }
-
-            .form-input {
-                padding: 12px 16px;
-                font-size: 14px;
-            }
-
-            .submit-btn {
-                padding: 14px 20px;
-                font-size: 14px;
-            }
-        }
-
-        /* Gaming UI Elements */
-        .ui-corner {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            border: 2px solid rgba(0, 212, 255, 0.5);
-        }
-
-        .ui-corner.top-left {
-            top: 20px;
-            left: 20px;
-            border-right: none;
-            border-bottom: none;
-        }
-
-        .ui-corner.top-right {
-            top: 20px;
-            right: 20px;
-            border-left: none;
-            border-bottom: none;
-        }
-
-        .ui-corner.bottom-left {
-            bottom: 20px;
-            left: 20px;
-            border-right: none;
-            border-top: none;
-        }
-
-        .ui-corner.bottom-right {
-            bottom: 20px;
-            right: 20px;
-            border-left: none;
-            border-top: none;
-        }
-
-        /* FIXED: Fallback gradient backgrounds for mobile */
-        .gradient-1 {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        .gradient-2 {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
-
-        .gradient-3 {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        }
-
-        .gradient-4 {
-            background: linear-gradient(45deg, #fa709a, #fee140, #ff6b6b);
         }
     </style>
 </head>
 <body>
-    <!-- Custom Cursor -->
-    <div class="cursor"></div>
-
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav">
-            <a href="index.html" class="logo">Nexus Tech</a>
-            <div class="nav-links">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="coming-soon.html" class="nav-link">Services</a>
-                <a href="coming-soon.html" class="nav-link">Portfolio</a>
-                <a href="index.html" class="nav-link">Contact</a>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="main.html" class="logo">Nexus Tech</a>
+            <ul class="nav-links">
+                <li><a href="apps.html">Apps</a></li>
+                <li><a href="websites.html">Websites</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="connect.html">Connect</a></li>
+            </ul>
+            <div class="nav-auth">
+                <a href="index.html"auth-link" id="dashboardLink" style="display: none;">Dashboard</a>
+                <a href="coming-soon.html" class="cta-button" id="loginButton">Client Login</a>
             </div>
-            <div class="nav-status">
-                <div class="status-indicator"></div>
-                System Status: Online
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Custom Digital Solutions</div>
+            <h1>Precision in Every Pixel</h1>
+            <div class="hero-subtitle">Next-Level Digital Experiences</div>
+            <p>Custom-built apps, websites, games, and digital solutions for forward-thinking brands ready to dominate their markets.</p>
+            <div class="hero-buttons">
+                <a href="connect.html" class="btn-primary">Book Discovery Call</a>
+                <a href="coming-soon.html" class="btn-secondary">Explore Services</a>
             </div>
-        </nav>
-    </header>
+        </div>
+    </section>
 
-    <!-- Main Container -->
-    <div class="main-container">
-        <!-- Gaming UI Corners -->
-        <div class="ui-corner top-left"></div>
-        <div class="ui-corner top-right"></div>
-        <div class="ui-corner bottom-left"></div>
-        <div class="ui-corner bottom-right"></div>
+    <!-- Services Preview Section -->
+    <section class="services-preview" id="services">
+        <div class="section-header">
+            <div class="section-badge">Our Services</div>
+            <h2>What We Build</h2>
+            <p>Cutting-edge solutions designed to accelerate your business and captivate your audience</p>
+        </div>
 
-        <!-- Project Showcase Panel -->
-        <div class="project-panel">
-            <div class="project-carousel">
-                <div class="progress-bar"></div>
-                
-                <!-- FIXED: Slide 1 with separate background div -->
-                <div class="project-slide active gradient-1">
-                    <div class="project-slide-bg"></div>
-                    <div class="project-info">
-                        <div class="project-category">Featured Work</div>
-                        <h2 class="project-title">Game Development</h2>
-                        <p class="project-description">
-                            Immersive gaming experiences with cutting-edge graphics, advanced AI systems, 
-                            and engaging gameplay mechanics that captivate players worldwide.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Unreal Engine</span>
-                            <span class="tech-tag">C++</span>
-                            <span class="tech-tag">3D Graphics</span>
-                            <span class="tech-tag">AI Systems</span>
-                        </div>
-                    </div>
-                </div>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <span class="service-icon">💻</span>
+                <h3>Web Development</h3>
+                <p>Custom websites and web applications built with modern frameworks like React, Next.js, and TypeScript.</p>
+            </div>
 
-                <!-- FIXED: Slide 2 with separate background div -->
-                <div class="project-slide gradient-2">
-                    <div class="project-slide-bg"></div>
-                    <div class="project-info">
-                        <div class="project-category">Latest Project</div>
-                        <h2 class="project-title">Mobile Apps</h2>
-                        <p class="project-description">
-                            Native iOS and Android applications with smooth animations,
-                             real-time multiplayer features, and intuitive user interfaces.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">React Native</span>
-                            <span class="tech-tag">Swift</span>
-                            <span class="tech-tag">Kotlin</span>
-                            <span class="tech-tag">Real-time</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="service-card fade-in">
+                <span class="service-icon">📱</span>
+                <h3>App Development</h3>
+                <p>Native iOS and Android applications that users love, built with React Native, Swift, and Kotlin.</p>
+            </div>
 
-                <!-- FIXED: Slide 3 with separate background div -->
-                <div class="project-slide gradient-3">
-                    <div class="project-slide-bg"></div>
-                    <div class="project-info">
-                        <div class="project-category">Innovation</div>
-                        <h2 class="project-title">Web Platforms</h2>
-                        <p class="project-description">
-                            Modern web applications with procedural generation, VR compatibility, 
-                            and atmospheric design that pushes the boundaries of what's possible.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Next.js</span>
-                            <span class="tech-tag">TypeScript</span>
-                            <span class="tech-tag">WebGL</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="service-card fade-in">
+                <span class="service-icon">🎮</span>
+                <h3>Game Development</h3>
+                <p>Interactive entertainment and gamified experiences using Unity, Unreal Engine, and modern web technologies.</p>
+            </div>
 
-                <!-- FIXED: Slide 4 with separate background div -->
-                <div class="project-slide gradient-4">
-                    <div class="project-slide-bg"></div>
-                    <div class="project-info">
-                        <div class="project-category">Full Service</div>
-                        <h2 class="project-title">Digital Solutions</h2>
-                        <p class="project-description">
-                            Complete digital transformation services including web development,
-                             mobile apps, game development, and custom software solutions.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Web Development</span>
-                            <span class="tech-tag">Mobile Apps</span>
-                            <span class="tech-tag">Game Development</span>
-                            <span class="tech-tag">Digital Solutions</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Navigation Dots -->
-                <div class="carousel-nav">
-                    <div class="nav-dot active" data-slide="0"></div>
-                    <div class="nav-dot" data-slide="1"></div>
-                    <div class="nav-dot" data-slide="2"></div>
-                    <div class="nav-dot" data-slide="3"></div>
-                </div>
+            <div class="service-card fade-in">
+                <span class="service-icon">⚡</span>
+                <h3>Digital Templates</h3>
+                <p>Pre-built solutions and template systems to accelerate development and reduce time-to-market.</p>
             </div>
         </div>
 
-        <!-- Waitlist Panel -->
-        <div class="waitlist-panel">
-            <div class="waitlist-content">
-                <div class="launch-badge">Project Consultation</div>
-                <h1 class="waitlist-title">Request Your Project</h1>
-                <p class="waitlist-subtitle">
-                    Ready to bring your vision to life? Tell us about your project and book a strategic 45-minute consultation to discuss your digital solution.
-                </p>
+        <div class="explore-all">
+            <a href="services.html" class="explore-btn">Explore All Services</a>
+        </div>
+    </section>
 
-                <!-- NETLIFY FORM -->
-                <form class="waitlist-form" name="project-request" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
-                    <input type="hidden" name="form-name" value="project-request" />
-                    <p style="display: none;">
-                        <input name="bot-field" />
-                    </p>
-                    
-                    <div class="form-group">
-                        <input type="text" name="name" class="form-input" placeholder="Full Name" required />
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="email" name="email" class="form-input" placeholder="Email Address" required />
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="text" name="company" class="form-input" placeholder="Company Name" required />
-                    </div>
+    <!-- Stats Section -->
+    <section class="stats" id="stats">
+        <div class="stats-container">
+            <div class="section-header">
+                <div class="section-badge">Our Impact</div>
+                <h2>Proven Results</h2>
+                <p>Trusted by startups and enterprises worldwide</p>
+            </div>
 
-                    <div class="form-group">
-                        <select name="project-type" class="form-input" required>
-                            <option value="">Select Project Type</option>
-                            <option value="website">Website Development</option>
-                            <option value="mobile-app">Mobile App</option>
-                            <option value="game-development">Game Development</option>
-                            <option value="web-app">Web Application</option>
-                            <option value="ecommerce">E-commerce Platform</option>
-                            <option value="other">Other/Multiple Services</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <select name="budget" class="form-input" required>
-                            <option value="">Project Budget Range</option>
-                            <option value="under-10k">Under $10,000</option>
-                            <option value="10k-25k">$10,000 - $25,000</option>
-                            <option value="25k-50k">$25,000 - $50,000</option>
-                            <option value="50k-100k">$50,000 - $100,000</option>
-                            <option value="100k-plus">$100,000+</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <select name="timeline" class="form-input" required>
-                            <option value="">Project Timeline</option>
-                            <option value="asap">ASAP (Rush Project)</option>
-                            <option value="1-month">Within 1 Month</option>
-                            <option value="2-3-months">2-3 Months</option>
-                            <option value="3-6-months">3-6 Months</option>
-                            <option value="6-plus-months">6+ Months</option>
-                            <option value="flexible">Flexible Timeline</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <textarea name="project-description" class="form-input" placeholder="Brief description of your project, goals, and any specific requirements..." rows="4" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">Request A Project Consultation</button>
-                </form>
-
-                <!-- SUCCESS MESSAGE -->
-                <div class="success-message" id="successMessage">
-                    <h3>Project Request Received! 🚀</h3>
-                    <p>Thank you for your interest! We've received your project details and will review them shortly.</p>
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <span class="stat-number">25+</span>
+                    <span class="stat-label">Projects Delivered</span>
                 </div>
 
-                <ul class="waitlist-features">
-                    <li>45-minute strategy consultation</li>
-                    <li>Custom project proposal & timeline</li>
-                    <li>Technology recommendations</li>
-                    <li>Transparent pricing breakdown</li>
-                    <li>Expert team introduction</li>
-                </ul>
+                <div class="stat-item fade-in">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Happy Clients</span>
+                </div>
+
+                <div class="stat-item fade-in">
+                    <span class="stat-number">8+</span>
+                    <span class="stat-label">Apps Launched</span>
+                </div>
+
+                <div class="stat-item fade-in">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Client Satisfaction</span>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- JavaScript -->
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="cta-content">
+            <h2>Ready to Build Something Amazing?</h2>
+            <p>Let's discuss your project and create a solution that exceeds your expectations</p>
+            <a href="connect.html" class="cta-btn">Book Discovery Call</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Company Info</h4>
+                <p><a href="about.html">About Nexus Tech</a></p>
+                <p><a href="team.html">Our Story</a></p>
+                <p><a href="mission.html">Mission & Values</a></p>
+                <p><a href="press.html">Press & Media</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Services</h4>
+                <p><a href="websites.html">Web Development</a></p>
+                <p><a href="apps.html">App Development</a></p>
+                <p><a href="services.html">Game Development</a></p>
+                <p><a href="services.html">Digital Templates</a></p>
+                <p><a href="portfolio.html">View Portfolio</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Support</h4>
+                <p><a href="support.html">Help Center</a></p>
+                <p><a href="connect.html">Contact Support</a></p>
+                <p><a href="documentation.html">Documentation</a></p>
+                <p><a href="status.html">System Status</a></p>
+                <p><a href="community.html">Community Forums</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <p><a href="blog.html">Tech Blog</a></p>
+                <p><a href="guides.html">Development Guides</a></p>
+                <p><a href="templates.html">Code Templates</a></p>
+                <p><a href="tools.html">Free Tools</a></p>
+                <p><a href="newsletter.html">Newsletter</a></p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Nexus Tech Digital Solutions. All rights reserved. | Privacy Policy | Terms of Service | Cookie Policy</p>
+        </div>
+    </footer>
+
     <script>
-        // Custom Cursor
-        const cursor = document.querySelector('.cursor');
-        const interactiveElements = document.querySelectorAll('button, .nav-dot, .submit-btn, input, select, textarea, .nav-link, .logo');
-
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+        // Smooth scrolling and navbar effects
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(13, 17, 23, 0.98)';
+                navbar.style.borderBottom = '1px solid #00d4ff';
+            } else {
+                navbar.style.background = 'rgba(13, 17, 23, 0.95)';
+                navbar.style.borderBottom = '1px solid #21262d';
+            }
         });
 
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-        });
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-        // FIXED: Better image loading for mobile with your project images
-        function loadBackgroundImages() {
-            const bgElements = document.querySelectorAll('.project-slide-bg');
-            
-            // Your actual image paths (keeping original paths)
-            const actualImages = [
-                'assets/image1.png',   // Game Development
-                'assets/image2.PNG',   // Mobile Apps  
-                'assets/image3.PNG',   // Web Platforms
-                'assets/image6.PNG'    // Digital Solutions
-            ];
-            
-            bgElements.forEach((bg, index) => {
-                const imagePath = actualImages[index];
-                
-                // Create new image to preload and test
-                const img = new Image();
-                img.onload = function() {
-                    // Image loaded successfully, apply as background
-                    bg.style.backgroundImage = `url('${imagePath}')`;
-                    bg.style.backgroundSize = 'cover';
-                    bg.style.backgroundPosition = 'center';
-                    bg.style.backgroundRepeat = 'no-repeat';
-                    console.log(`✅ Image loaded: ${imagePath}`);
-                };
-                img.onerror = function() {
-                    // Image failed to load, log the error and keep gradient
-                    console.log(`❌ Failed to load image: ${imagePath}`);
-                    console.log('Check if the file exists and the path is correct');
-                    // The gradient background will show instead
-                };
-                
-                // Start loading the image
-                img.src = imagePath;
-            });
-        }
-        
-        // Debug function to check your folder structure
-        function checkImagePaths() {
-            const imagePaths = [
-                'assets/image1.png',
-                'assets/image2.PNG', 
-                'assets/image3.PNG',
-                'assets/image6.PNG'
-            ];
-            
-            console.log('🔍 Checking image paths...');
-            imagePaths.forEach((path, index) => {
-                const img = new Image();
-                img.onload = () => console.log(`✅ Found: ${path}`);
-                img.onerror = () => console.log(`❌ Missing: ${path}`);
-                img.src = path;
-            });
-        }
-
-        // Carousel functionality
-        const slides = document.querySelectorAll('.project-slide');
-        const dots = document.querySelectorAll('.nav-dot');
-        const progressBar = document.querySelector('.progress-bar');
-        let currentSlide = 0;
-        let slideInterval;
-
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-            
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
-            
-            progressBar.style.width = '0%';
-            setTimeout(() => {
-                progressBar.style.width = '100%';
-            }, 100);
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
-
-        function startSlideshow() {
-            slideInterval = setInterval(nextSlide, 5000);
-            progressBar.style.width = '100%';
-        }
-
-        function stopSlideshow() {
-            clearInterval(slideInterval);
-            progressBar.style.width = '0%';
-        }
-
-        // Dot navigation
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                currentSlide = index;
-                showSlide(currentSlide);
-                stopSlideshow();
-                setTimeout(startSlideshow, 1000);
-            });
-        });
-
-        // Pause on hover
-        const projectPanel = document.querySelector('.project-panel');
-        projectPanel.addEventListener('mouseenter', stopSlideshow);
-        projectPanel.addEventListener('mouseleave', startSlideshow);
-
-        // FORM HANDLING
-        const form = document.querySelector('.waitlist-form');
-        const successMessage = document.getElementById('successMessage');
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const formData = new FormData(form);
-            const submitBtn = form.querySelector('.submit-btn');
-            const originalText = submitBtn.textContent;
-            
-            try {
-                submitBtn.textContent = 'Submitting...';
-                submitBtn.disabled = true;
-                
-                await fetch('/', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams(formData).toString()
-                });
-                
-                form.style.display = 'none';
-                successMessage.style.display = 'block';
-                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                
-            } catch (error) {
-                console.error('Form submission error:', error);
-                submitBtn.textContent = 'Try Again';
-                alert('Something went wrong. Please try again or contact us directly.');
-            } finally {
-                if (form.style.display !== 'none') {
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
-            }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
         });
 
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                currentSlide = currentSlide > 0 ? currentSlide - 1 : slides.length - 1;
-                showSlide(currentSlide);
-                stopSlideshow();
-                setTimeout(startSlideshow, 1000);
-            } else if (e.key === 'ArrowRight') {
-                nextSlide();
-                stopSlideshow();
-                setTimeout(startSlideshow, 1000);
-            }
+        // Enhanced service card interactions
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px) scale(1.02)';
+                card.style.borderColor = '#00d4ff';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+                card.style.borderColor = '#30363d';
+            });
         });
 
-        // Initialize
-        if (window.innerWidth <= 768) {
-            cursor.style.display = 'none';
+        // Animate stats numbers
+        const animateStats = () => {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const finalNumber = stat.textContent;
+                const isPercentage = finalNumber.includes('%');
+                const hasPlus = finalNumber.includes('+');
+                const cleanNumber = finalNumber.replace(/[^\d.]/g, '');
+                const target = parseFloat(cleanNumber);
+                
+                let current = 0;
+                const increment = target / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    
+                    let displayValue = Math.floor(current);
+                    if (isPercentage) displayValue += '%';
+                    if (hasPlus) displayValue += '+';
+                    
+                    stat.textContent = displayValue;
+                }, 50);
+            });
+        };
+
+        // Trigger stats animation when section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
         }
 
-        // Load images when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            // Check which images exist (for debugging)
-            checkImagePaths();
+        // Simple auth state management for homepage
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if user is signed in (this would integrate with Firebase)
+            // For now, this is just placeholder functionality
+            const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
             
-            // Load the background images
-            loadBackgroundImages();
+            if (isLoggedIn) {
+                document.getElementById('dashboardLink').style.display = 'block';
+                document.getElementById('loginButton').textContent = 'Dashboard';
+                document.getElementById('loginButton').href = 'dashboard.html';
+            }
         });
-        
-        // Start slideshow
-        startSlideshow();
     </script>
 </body>
 </html>
